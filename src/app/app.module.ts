@@ -14,13 +14,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { MemoryDatabaseService } from './memory-database.service';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FightFormComponent } from './pokemon/fight-form/fight-form.component';
+import { InlineDocumentationComponent } from './inline-documentation/inline-documentation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     DisableRightClickDirective,
-    LoginComponent
+    LoginComponent,
+    FightFormComponent,
+    InlineDocumentationComponent
   ],
   imports: [
     BrowserModule,

@@ -18,11 +18,13 @@ import { SearchPokemonComponent } from './search-pokemon/search-pokemon.componen
 import { PokemonAlignmentColorPipe } from './pokemon-alignment-color.pipe';
 import { authGuard } from '../auth.guard';
 import { AuthService } from '../auth.service';
+import { FightFormComponent } from './fight-form/fight-form.component';
 
 const pokemonRoutes: Routes = [
   { path: 'edit/pokemon/:id', component: EditPokemonComponent, canActivate: [authGuard] },
   { path: 'pokemons', component: ListPokemonsComponent, canActivate: [authGuard] },
-  { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard] }
+  { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard] },
+  { path: 'fight', component: FightFormComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
