@@ -1,0 +1,114 @@
+<div *ngIf="pokemon" class="row">
+    <div class="col m8 offset-m2">
+        <div class="card horizontal hoverable">
+            <div class="card-image" style="width: 35%">
+                <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
+                    <h4>{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                </div>
+                <div>
+                    <img [src]="pokemon.picture" />
+                </div>
+                <div style="padding-left: 10px">
+                    <b>Créé le : </b>{{ pokemon.created | date: 'dd/MM/yyyy hh:mm:ss' }}
+                    <br>
+                    <b>Modifié le : </b>{{ pokemon.updated | date: 'dd/MM/yyyy hh:mm:ss' }}
+                </div>
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <table class="bordered striped">
+                        <tbody>
+                            <tr>
+                                <td class="title-row-style"><b>Type (sous-type) :</b></td>
+                                <td class="special-value-row-style">
+                                    <span class="{{ pokemon.type | pokemonTypeColor }}">
+                                        {{ getType(pokemon.type) }} ({{ pokemon.subType }})
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Alignement :</b></td>
+                                <td class="special-value-row-style">
+                                    <span class="{{ pokemon.alignment | pokemonAlignmentColor }}">
+                                        {{ getAlignment(pokemon.alignment) }}
+                                    </span>                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Niveau :</b></td>
+                                <td class="value-row-style">{{ pokemon.level }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Description :</b></td>
+                                <td class="value-row-style">{{ pokemon.description }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Taille (cm) :</b></td>
+                                <td class="value-row-style">{{ pokemon.size }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Poids (kg) :</b></td>
+                                <td class="value-row-style">{{ pokemon.weight }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Points de vie :</b></td>
+                                <td class="value-row-style">{{ pokemon.hitPoints }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Protection :</b></td>
+                                <td class="value-row-style">{{ pokemon.protection }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Mouvement :</b></td>
+                                <td class="value-row-style">{{ getMovement(pokemon.movement) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Attaque :</b></td>
+                                <td class="value-row-style">{{ pokemon.attack }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Dégâts :</b></td>
+                                <td class="value-row-style">{{ pokemon.damage }}D6</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Défense :</b></td>
+                                <td class="value-row-style">{{ pokemon.defense }}</td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Capacités spéciales :</b></td>
+                                <td class="special-value-row-style">
+                                    <span *ngFor="let specialAbility of pokemon.specialAbilities" 
+                                        class="{{ specialAbility.specialAbility | pokemonSpecialAbilityColor }}">
+                                        {{ getSpecialAbility(specialAbility.specialAbility) }}
+                                        [
+                                        <span *ngIf="specialAbility.damage"> {{ specialAbility.damage }}D6 </span>
+                                        <span *ngIf="specialAbility.times"> {{ specialAbility.times }} charges</span>
+                                        <span *ngIf="specialAbility.attack"> attaque : +{{ specialAbility.attack }}</span>
+                                        <span *ngIf="specialAbility.defense"> défense : +{{ specialAbility.defense }}</span>
+                                        ]
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title-row-style"><b>Défense spéciale :</b></td>
+                                <td class="special-value-row-style">
+                                    <span class="{{ pokemon.specialDefense| pokemonSpecialDefenseColor }}">
+                                        {{ getSpecialDefense(pokemon.specialDefense) }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-action">
+                    <a (click)="goToPokemonList()">Retour</a>
+                    <a (click)="goToEditPokemon(pokemon)">Éditer</a>
+                    <a (click)="deletePokemon(pokemon)">Suprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1 *ngIf="!pokemon" class="center">
+    <app-loader></app-loader>
+</h1>

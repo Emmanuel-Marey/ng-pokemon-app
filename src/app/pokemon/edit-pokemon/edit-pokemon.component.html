@@ -1,0 +1,20 @@
+<div *ngIf="pokemon" class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card horizontal hoverable">
+            <div class="card-image" style="width: 30%">
+                <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
+                    <h4>{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                </div>
+                <div>
+                    <img [src]="pokemon.picture" />
+                </div>
+            </div>
+            <div class="card-stacked">
+                <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
+            </div>
+        </div>
+    </div>
+</div>
+<h1 *ngIf="!pokemon" class="center">
+    <app-loader></app-loader>
+</h1>

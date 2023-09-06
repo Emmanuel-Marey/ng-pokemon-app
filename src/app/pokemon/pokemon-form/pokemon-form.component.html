@@ -1,0 +1,213 @@
+<form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+    <div class="row">
+        <div class="col m11">
+            <div class="card-panel">
+                <!-- Name -->
+                <diV style="position: relative; width: 100%; float: left;">
+                    <div class="form-group" style="position: relative; width: 50%; float: left; padding-right: 24px">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name" required pattern="^[a-zA-ZÉéèêçô-]{1,15}"
+                            [(ngModel)]="pokemon.name" name="name" #name="ngModel" style="height: 32px">
+                        <div [hidden]="name.valid || name.pristine" class="card-panel red accent-1">
+                            Le nom est incorrecte. Il est limité à 15 caractères parmi lesquels: a b ... z A B ... Z é è
+                            ê ç -
+                        </div>
+                    </div>
+                </diV>
+
+                <!-- Type -->
+                <div style="position: relative; width: 100%; float: left;">
+                    <label for="type">Type</label>
+                    <div class="form-group">
+                        <div *ngFor="let type of types">
+                            <label><input id="{{ type }}" name="selectedType" [(ngModel)]="pokemon.type" [value]="type"
+                                    type="radio" />
+                                <span>{{ getType(type) }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sous-type -->
+                <div style="position: relative; width: 100%; float: left;">
+                    <div class="form-group" style="position: relative; width: 50%; float: left; padding-right: 24px">
+                        <label for="subType">Sous-type</label>
+                        <input type="text" class="form-control" id="subType" required pattern="^[a-zA-ZÉéèêçô-\s]{1,25}"
+                            [(ngModel)]="pokemon.subType" name="subType" #subType="ngModel" style="height: 32px">
+                        <div [hidden]="subType.valid || subType.pristine" class="card-panel red accent-1">
+                            Le sous-type est incorrect. Il est limité à 25 caractères parmi lesquels: a b ... z A B ... Z é è
+                            ê ç -
+                        </div>
+                    </div>
+                </div>                
+
+                <!-- Alignment -->
+                <div style="position: relative; width: 100%; float: left;">
+                    <label for="alignment">Alignement</label>
+                    <div class="form-group">
+                        <div *ngFor="let alignment of alignments">
+                            <label><input id="{{ alignment }}" name="selectedAlignment" [(ngModel)]="pokemon.alignment"
+                                    [value]="alignment" type="radio" />
+                                <span>{{ getAlignment(alignment) }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level -->
+                <div class="form-group" style="position: relative; width: 100%; float: left; padding-right: 24px">
+                    <label for="level">Niveau</label>
+                    <input type="number" class="form-control" id="level" required pattern="^[0-9]{1}"
+                        [(ngModel)]="pokemon.level" name="level" step="1" min="1" max="4" #size="ngModel"
+                        style="height: 32px">
+                    <div [hidden]="size.valid || size.pristine" class="card-panel red accent-1">
+                        Le niveau maximum est égal à 4.
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="form-group" style="position: relative; width: 100%; float: left">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" id="description" required [(ngModel)]="pokemon.description"
+                        name="description" #description="ngModel" style="height: 128px; resize:none"></textarea>
+                    <div [hidden]="description.valid || description.pristine" class="card-panel red accent-1">
+                        La description est incorrecte.
+                        Elle peut contenir jusqu'à 255 caractères parmi lesquels: a b ... z A B ... Z 0 ... 9 ' é è ê ç
+                        à â ù û , . ; : ! - espace
+                    </div>
+                </div>
+
+                <div style="position: relative; width: 100%; float: left;">
+                    <!-- Size -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="size">Taille (cm)</label>
+                        <input type="number" class="form-control" id="size" required pattern="^[0-9]{1,3}"
+                            [(ngModel)]="pokemon.size" name="size" step="1" min="10" max="500" #size="ngModel"
+                            style="height: 32px">
+                        <div [hidden]="size.valid || size.pristine" class="card-panel red accent-1">
+                            La taille doit être comprise entre 10 cm et 5 m.
+                        </div>
+                    </div>
+                    <!-- Weight -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="weight">Poid (kg)</label>
+                        <input type="number" class="form-control" id="weight" required pattern="^[0-9]*(\.[0-9]{0,2})?$"
+                            [(ngModel)]="pokemon.weight" name="weight" step="0.01" min="0.5" max="500" #weight="ngModel"
+                            style="height: 32px">
+                        <div [hidden]="weight.valid || weight.pristine" class="card-panel red accent-1">
+                            La poids doit être compris entre 0.5 kg et 500 kg avec une précision de 2 chiffres après la
+                            virgule.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="position: relative; width: 100%; float: left;">
+                    <!-- Hit points -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="hitPoints">Points de vie</label>
+                        <input type="number" class="form-control" id="hitPoints" required pattern="^[0-9]{1,3}"
+                            [(ngModel)]="pokemon.hitPoints" name="hitPoints" step="1" min="20" max="240"
+                            #hitPoints="ngModel" style="height: 32px">
+                        <div [hidden]="hitPoints.valid || hitPoints.pristine" class="card-panel red accent-1">
+                            Les points de vie doivent être compris entre 10 et 240
+                        </div>
+                    </div>
+                    <!-- Protection -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="protection">Protection</label>
+                        <input type="number" class="form-control" id="protection" required pattern="^[0-9]{1}"
+                            [(ngModel)]="pokemon.protection" name="protection" step="1" min="0" max="10"
+                            #protection="ngModel" style="height: 32px">
+                        <div [hidden]="protection.valid || protection.pristine" class="card-panel red accent-1">
+                            La protection doit être comprise entre 0 et 10
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movement -->
+                <div style="position: relative; width: 100%; float: left;">
+                    <label for="movement">Mouvement</label>
+                    <div class="form-group">
+                        <div *ngFor="let movement of movements">
+                            <label><input id="{{ movement }}" name="selectedMovement" [(ngModel)]="pokemon.movement"
+                                    [value]="movement" type="radio" />
+                                <span>{{ getMovement(movement) }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="position: relative; width: 100%; float: left;">
+                    <!-- Attack -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="attack">Attaque</label>
+                        <input type="number" class="form-control" id="attack" required pattern="^[0-9]{1,2}"
+                            [(ngModel)]="pokemon.attack" name="attack" step="1" min="1" max="10" #attack="ngModel"
+                            style="height: 32px">
+                        <div [hidden]="attack.valid || attack.pristine" class="card-panel red accent-1">
+                            Le bonus offensif doit être compris entre 1 et 10
+                        </div>
+                    </div>
+                    <!-- Damage -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="damage">Dégâts (D6)</label>
+                        <input type="number" class="form-control" id="damage" required pattern="^[0-9]{1}"
+                            [(ngModel)]="pokemon.damage" name="damage" step="1" min="0" max="5" #damage="ngModel"
+                            style="height: 32px">
+                        <div [hidden]="damage.valid || damage.pristine" class="card-panel red accent-1">
+                            Les dégâts additionnels doivent être compris entre 0 et 5
+                        </div>
+                    </div>
+                    <!-- Defense -->
+                    <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
+                        <label for="defense">Défense</label>
+                        <input type="number" class="form-control" id="defense" required pattern="^[0-9]{1,2}"
+                            [(ngModel)]="pokemon.defense" name="defense" step="1" min="1" max="20" #defense="ngModel"
+                            style="height: 32px">
+                        <div [hidden]="defense.valid || defense.pristine" class="card-panel red accent-1">
+                            Le bonus défensif doit être compris entre 1 et 20
+                        </div>
+                    </div>
+                </div>
+
+                <div style="position: relative; width: 100%; float: left;">
+                    <!-- Special abilities -->
+                    <div class="form-group" style="position: relative; width: 50%; float: left">
+                        <label for="specialAbilities">Capacités spéciales</label>
+                        <div *ngFor="let specialAbility of specialAbilities">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="{{ specialAbility }}"
+                                    [value]="specialAbility" [checked]="hasSpecialAbility(specialAbility)"
+                                    [disabled]="!isSpecialAbilityValidNew(specialAbility)"
+                                    (change)="selectSpecialAbility($event, specialAbility)" />
+                                <span style="padding: 0px 0px 0px 32px">{{ getSpecialAbility(specialAbility) }}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Special defense -->
+                    <div class="form-group" style="position: relative; width: 50%; float: left">
+                        <label for="specialDefense">Défense spéciale</label>
+                        <div *ngFor="let specialDefense of specialDefenses">
+                            <label><input id="{{ specialDefense }}" name="selectedSpecialDefense" [(ngModel)]="pokemon.specialDefense"
+                                [value]="specialDefense" type="radio" />
+                                <span>{{ getSpecialDefense(specialDefense) }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="divider"></div>
+                <div class="section center">
+                    <button type="submit" class="waves-effect waves-light btn"
+                        [disabled]="!pokemonForm.form.valid">Valider</button>
+                    <div class="space"></div>
+                    <button type="button" class="waves-effect waves-light btn" (click)="onCancel()">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<h1 *ngIf="!pokemon" class="center">
+    <app-loader></app-loader>
+</h1>

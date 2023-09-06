@@ -1,0 +1,64 @@
+<div appDisableRightClick>
+  <nav class="light-blue lighten-1">
+    <div class="nav-wrapper">
+      <div class="brand-logo">
+        <img src="assets/Pokemon-logo-transparent.png" width="20%" height="20%" />
+      </div>
+      <ul class="right hide-on-med-and-down" style="padding-right: 100px">
+        <li><a>Règles du jeu</a></li>
+        <li><a>Pokémons</a></li>
+        <li><a>ASH vs GOH</a></li>
+      </ul>
+      <div class="nav-content">
+        <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal modal-trigger" href="#confirmation">
+          <i class="material-icons" style="font-size: 36px">close</i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="confirmation" class="modal">
+    <div class="modal-content">
+        <h4>Confirmation</h4>
+        <p>Êtes-vous sûr de vouloir quitter le jeu ?</p>
+    </div>
+    <div class="modal-footer">
+        <a (click)="logout()" class="modal-close waves-effect waves-green btn-flat">Oui</a>
+        <a class="modal-close waves-effect waves-green btn-flat">Non</a>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Angular</h5>
+          <p class="grey-text text-lighten-4">Ce jeux a été développé en Angular</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Liens</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://angular.io">Angular</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://materializecss.com">Materialize (framework
+                graphique)</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://developer.mozilla.org/fr/">Ressources pour les
+                développeurs</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.w3schools.com/html/default.asp">Tutoriel HTML</a>
+            </li>
+            <li><a class="grey-text text-lighten-3" href="https://stackblitz.com/">Environnement de développement
+                intégré WEB</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Produit par Emmanuel Marey, Copyright © 2023
+        <a class="grey-text text-lighten-4 right" href="https://www.pokepedia.fr/Pikachu">Poképédia (Bibliothèque de
+          Pokémons)</a>
+      </div>
+    </div>
+  </footer>
+</div>
