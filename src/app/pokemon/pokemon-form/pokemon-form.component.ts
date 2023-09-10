@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
-import { Pokemon } from '../pokemon';
+import { Pokemon } from "../pokemon";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PokemonSpecialAbility, SPECIAL_ABILITIES, SpecialAbility } from '../pokemon-specialability';

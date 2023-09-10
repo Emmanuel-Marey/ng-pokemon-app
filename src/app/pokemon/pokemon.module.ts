@@ -4,6 +4,8 @@ import { ListPokemonsComponent } from './list-pokemons/list-pokemons.component';
 import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
 import { BorderLargeCardDirective } from './border-large-card.directive';
 import { BorderSmallCardDirective } from './border-small-card.directive';
+import { BorderFighterCardDirective } from './border-fighter-card.directive';
+import { BorderUnknownFighterCardDirective } from './border-unknown-fighter-card.directive'
 import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 import { PokemonSpecialAbilityColorPipe } from './pokemon-specialability-color.pipe';
 import { PokemonSpecialDefenseColorPipe } from './pokemon-specialdefense-color.pipe';
@@ -33,15 +35,18 @@ const pokemonRoutes: Routes = [
     DetailPokemonComponent,
     BorderLargeCardDirective,
     BorderSmallCardDirective,
+    BorderFighterCardDirective,
+    BorderUnknownFighterCardDirective,
     PokemonTypeColorPipe,
+    PokemonAlignmentColorPipe,
     PokemonSpecialAbilityColorPipe,
     PokemonSpecialDefenseColorPipe,
     PokemonFormComponent,
     EditPokemonComponent,
     AddPokemonComponent,
+    FightFormComponent,
     LoaderComponent,
-    SearchPokemonComponent,
-    PokemonAlignmentColorPipe
+    SearchPokemonComponent
   ],
   imports: [
     CommonModule,

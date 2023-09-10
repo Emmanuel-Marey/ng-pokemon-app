@@ -5,13 +5,12 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class BorderSmallCardDirective {
 
-  private initialBorderColor: string = '#E0E0E0';
-  private defaultBoderColor: string = "#009688";
-  private defaultHeight: number = 340;
+  private initialBorderColor: string = "gray";
+  private defaultBoderColor: string = "blue";
+  private defaultHeight: number = 300;
 
   constructor(private el: ElementRef) {
     this.setBorder(this.initialBorderColor);
-    
     this.setHeight(this.defaultHeight);
   }
 

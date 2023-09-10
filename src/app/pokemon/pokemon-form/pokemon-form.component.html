@@ -106,7 +106,7 @@
                     <div class="form-group" style="position: relative; width: 30%; float: left; padding-right: 24px">
                         <label for="hitPoints">Points de vie</label>
                         <input type="number" class="form-control" id="hitPoints" required pattern="^[0-9]{1,3}"
-                            [(ngModel)]="pokemon.hitPoints" name="hitPoints" step="1" min="20" max="240"
+                            [(ngModel)]="pokemon.hitPoints" name="hitPoints" step="1" min="10" max="240"
                             #hitPoints="ngModel" style="height: 32px">
                         <div [hidden]="hitPoints.valid || hitPoints.pristine" class="card-panel red accent-1">
                             Les points de vie doivent être compris entre 10 et 240

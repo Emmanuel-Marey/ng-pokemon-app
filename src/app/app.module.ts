@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -14,7 +14,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { MemoryDatabaseService } from './memory-database.service';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
-import { FightFormComponent } from './pokemon/fight-form/fight-form.component';
 import { InlineDocumentationComponent } from './inline-documentation/inline-documentation.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { InlineDocumentationComponent } from './inline-documentation/inline-docu
     PageNotFoundComponent,
     DisableRightClickDirective,
     LoginComponent,
-    FightFormComponent,
     InlineDocumentationComponent
   ],
   imports: [

@@ -1,14 +1,140 @@
 <div class="container">
     <div class="row">
-        <div class="col m4" style="height: 1200px;">
+        <div class="col m4">
+            <div *ngIf="pokemonFighterAsh" class="card horizontal" pokemon-Fighter-Card
+                [pokemonFighter]=pokemonFighterAsh>
+                <div class="card-image">
+                    <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
+                        <b>{{ pokemonFighterAsh.id }} - {{ pokemonFighterAsh.name }}</b>
+                    </div>
+                    <div>
+                        <img [src]="pokemonFighterAsh.picture" />
+                    </div>
+                    <br />
+                    <div style="text-align: center">
+                        <span class="{{ pokemonFighterAsh.type | pokemonTypeColor }}">
+                            {{ getType(pokemonFighterAsh.type) }}
+                        </span>
+                    </div>
+                    <div style="text-align: center">
+                        <span class="{{ pokemonFighterAsh.alignment | pokemonAlignmentColor }}">
+                            {{ getAlignment(pokemonFighterAsh.alignment) }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content" style="padding: 10px 2px 10px 2px">
+                        <div>
+                            <small>
+                                <b>Niveau : </b> {{ pokemonFighterAsh.level }}
+                                <br>
+                                <b>Points de vie : </b> {{ pokemonFighterAsh.currentHitPoints }} ({{
+                                pokemonFighterAsh.hitPoints }})
+                                <br>
+                                <progress id="progressBar" max="{{ pokemonFighterAsh.hitPoints }}"
+                                    value="{{ pokemonFighterAsh.currentHitPoints }}"></progress>
+                                <br>
+                                <b>Protection : </b> {{ pokemonFighterAsh.protection }}
+                                <br>
+                                <b>Attaque : </b> {{ pokemonFighterAsh.attack }}
+                                <br>
+                                <b>Dégâts : </b> {{ pokemonFighterAsh.damage }}D6
+                                <br>
+                                <b>Défense : </b> {{ pokemonFighterAsh.defense }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!pokemonFighterAsh" class="card horizontal" pokemon-Unknown-Fighter-Card>
+                <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
+            </div>
         </div>
-        <div class="col m4" style="height: 1200px;">
-            <img src="../../../assets/Pokemon-battle.jpg" width="100%" style="padding-top: 20px;"/>
-            Jet d'attaque:<br>
-            Jet de défense:<br>
-            Dégâts<br>
+        <div class="col m4">
+            <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
         </div>
-        <div class="col m4" style="height: 1200px;">
+        <div class="col m4">
+            <div *ngIf="pokemonFighterGoh" class="card horizontal" pokemon-Fighter-Card
+                [pokemonFighter]=pokemonFighterGoh>
+                <div class="card-image">
+                    <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
+                        <b>{{ pokemonFighterGoh.id }} - {{ pokemonFighterGoh.name }}</b>
+                    </div>
+                    <div>
+                        <img [src]="pokemonFighterGoh.picture" />
+                    </div>
+                    <br />
+                    <div style="text-align: center">
+                        <span class="{{ pokemonFighterGoh.type | pokemonTypeColor }}">
+                            {{ getType(pokemonFighterGoh.type) }}
+                        </span>
+                    </div>
+                    <div style="text-align: center">
+                        <span class="{{ pokemonFighterGoh.alignment | pokemonAlignmentColor }}">
+                            {{ getAlignment(pokemonFighterGoh.alignment) }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content" style="padding: 10px 2px 10px 2px">
+                        <div>
+                            <small>
+                                <b>Niveau : </b> {{ pokemonFighterGoh.level }}
+                                <br>
+                                <b>Points de vie : </b> {{ pokemonFighterGoh.currentHitPoints }} ({{
+                                pokemonFighterGoh.hitPoints }})
+                                <br>
+                                <progress id="progressBar" max="{{ pokemonFighterGoh.hitPoints }}"
+                                    value="{{ pokemonFighterGoh.currentHitPoints }}"></progress>
+                                <br>
+                                <b>Protection : </b> {{ pokemonFighterGoh.protection }}
+                                <br>
+                                <b>Attaque : </b> {{ pokemonFighterGoh.attack }}
+                                <br>
+                                <b>Dégâts : </b> {{ pokemonFighterGoh.damage }}D6
+                                <br>
+                                <b>Défense : </b> {{ pokemonFighterGoh.defense }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!pokemonFighterGoh" class="card horizontal" pokemon-Unknown-Fighter-Card>
+                <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <ul class="collection with-header col m12">
+            <li class="collection-header">
+                <button (click)="selectOpponents()" class="button buttonSelect"
+                    [disabled]="opponentsSelected">Sélectionner
+                    les combattants</button>
+                <span class="space"></span>
+                <button (click)="attack()" class="button buttonAttack"
+                    [disabled]="!opponentsSelected || (initiative == 1)">Attaquer</button>
+                <span class="space"></span>
+                <button (click)="defend()" class="button buttonDefense"
+                    [disabled]="!opponentsSelected || (initiative == 0)">Défendre</button>
+            </li>
+            <li class="collection-item">
+                <p>
+                    {{ rounds[0] }}<br>
+                    <span *ngIf="hits[0] == 1"><button class="miss">Raté</button></span>
+                    <span *ngIf="hits[0] == 2"><button class="hit">Touché</button></span>
+                    <span *ngIf="hits[0] == 3"><button class="victory">Victoire</button></span>
+                    <span class="space"></span>{{ messages[0] }}
+                </p>
+            </li>
+            <li class="collection-item">
+                <p>
+                    {{ rounds[1] }}<br>
+                    <span *ngIf="hits[1] == 1"><button class="hit">Raté</button></span>
+                    <span *ngIf="hits[1] == 2"><button class="miss">Blessé</button></span>
+                    <span *ngIf="hits[1] == 3"><button class="defeat">Défaite</button></span>
+                    <span class="space"></span>{{ messages[1] }}
+                </p>
+            </li>
+        </ul>
     </div>
 </div>

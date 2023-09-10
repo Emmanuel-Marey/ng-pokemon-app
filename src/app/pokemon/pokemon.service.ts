@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, catchError, of, tap } from 'rxjs';
 
-import { Pokemon } from './pokemon';
+import { Pokemon } from "./pokemon";
 import { PokemonSpecialAbility } from "./pokemon-specialability";
 import { PokemonType } from './pokemon-type';
 import { PokemonAlignment } from './pokemon-alignment';

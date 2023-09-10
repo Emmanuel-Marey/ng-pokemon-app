@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../pokemon';
+import { Pokemon } from "../pokemon";
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
-import { PokemonAlignment } from '../pokemon-alignment';
 import { PokemonType } from '../pokemon-type';
+import { PokemonAlignment } from '../pokemon-alignment';
 import { PokemonMovement } from '../pokemon-movement';
 import { PokemonSpecialAbility } from '../pokemon-specialability';
 import { PokemonSpecialDefense } from '../pokemon-specialdefense';
@@ -37,6 +37,11 @@ export class ListPokemonsComponent implements OnInit {
 
   getAlignment(alignment: PokemonAlignment): string {
     return PokemonAlignment.getAlignment(alignment);
+  }
+
+  getShortDescription(description: string): string {
+    var index = description.indexOf(".");
+    return description.substring(0, index +1);
   }
 
   getMovement(movement: PokemonMovement): string {
