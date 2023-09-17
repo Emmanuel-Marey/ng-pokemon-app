@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
-import { PokemonType } from '../parameters/pokemon-type';
-import { PokemonAlignment } from '../parameters/pokemon-alignment';
-import { PokemonMovement } from '../parameters/pokemon-movement';
-import { PokemonSpecialAbility } from '../parameters/pokemon-specialability';
-import { PokemonSpecialDefense } from '../parameters/pokemon-specialdefense';
 
 @Component({
   selector: 'app-list-pokemons',

@@ -1,24 +1,23 @@
 <div class="container">
     <div class="row">
         <div class="col m4">
-            <div *ngIf="fighterAsh" class="card horizontal" pokemon-Fighter-Card
-                [fighter]=fighterAsh>
+            <div *ngIf="fighterAsh" class="card horizontal" pokemon-Fighter-Card [fighter]=fighterAsh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
-                        <b>{{ fighterAsh.id }} - {{ fighterAsh.name }}</b>
+                        <b>{{ fighterAsh.pokemon.id }} - {{ fighterAsh.pokemon.name }}</b>
                     </div>
                     <div>
-                        <img [src]="fighterAsh.picture" />
+                        <img [src]="fighterAsh.pokemon.picture" />
                     </div>
                     <br />
                     <div style="text-align: center">
-                        <span class="{{ fighterAsh.type | pokemonTypeColor }}">
-                            {{ pokemonService.getPokemonType(fighterAsh.type) }}
+                        <span class="{{ fighterAsh.pokemon.type | pokemonTypeColor }}">
+                            {{ pokemonService.getPokemonType(fighterAsh.pokemon.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
-                        <span class="{{ fighterAsh.alignment | pokemonAlignmentColor }}">
-                            {{ pokemonService.getAlignment(fighterAsh.alignment) }}
+                        <span class="{{ fighterAsh.pokemon.alignment | pokemonAlignmentColor }}">
+                            {{ pokemonService.getAlignment(fighterAsh.pokemon.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -26,21 +25,21 @@
                     <div class="card-content" style="padding: 10px 2px 10px 2px">
                         <div>
                             <small>
-                                <b>Niveau : </b> {{ fighterAsh.level }}
+                                <b>Niveau : </b> {{ fighterAsh.pokemon.level }}
                                 <br>
                                 <b>Points de vie : </b> {{ fighterAsh.currentHitPoints }} ({{
-                                    fighterAsh.hitPoints }})
+                                    fighterAsh.pokemon.hitPoints }})
                                 <br>
-                                <progress id="progressBar" max="{{ fighterAsh.hitPoints }}"
+                                <progress id="progressBar" max="{{ fighterAsh.pokemon.hitPoints }}"
                                     value="{{ fighterAsh.currentHitPoints }}"></progress>
                                 <br>
-                                <b>Protection : </b> {{ fighterAsh.protection }}
+                                <b>Protection : </b> {{ fighterAsh.pokemon.protection }}
                                 <br>
-                                <b>Attaque : </b> {{ fighterAsh.attack }}
+                                <b>Attaque : </b> {{ fighterAsh.pokemon.attack }}
                                 <br>
-                                <b>Dégâts : </b> {{ fighterAsh.damage }}D6
+                                <b>Dégâts : </b> {{ fighterAsh.pokemon.damage }}D6
                                 <br>
-                                <b>Défense : </b> {{ fighterAsh.defense }}
+                                <b>Défense : </b> {{ fighterAsh.pokemon.defense }}
                             </small>
                         </div>
                     </div>
@@ -52,26 +51,29 @@
         </div>
         <div class="col m4">
             <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
+            <button (click)="selectFighters()" class="button buttonSelectFighters"
+                [hidden]="!isSelectingFighters()">Sélectionner les combattants</button>
+            <button (click)="fight()" class="button buttonFight"
+                hidden>Combattre</button>
         </div>
         <div class="col m4">
-            <div *ngIf="fighterGoh" class="card horizontal" pokemon-Fighter-Card
-                [fighter]=fighterGoh>
+            <div *ngIf="fighterGoh" class="card horizontal" pokemon-Fighter-Card [fighter]=fighterGoh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
-                        <b>{{ fighterGoh.id }} - {{ fighterGoh.name }}</b>
+                        <b>{{ fighterGoh.pokemon.id }} - {{ fighterGoh.pokemon.name }}</b>
                     </div>
                     <div>
-                        <img [src]="fighterGoh.picture" />
+                        <img [src]="fighterGoh.pokemon.picture" />
                     </div>
                     <br />
                     <div style="text-align: center">
-                        <span class="{{ fighterGoh.type | pokemonTypeColor }}">
-                            {{ pokemonService.getPokemonType(fighterGoh.type) }}
+                        <span class="{{ fighterGoh.pokemon.type | pokemonTypeColor }}">
+                            {{ pokemonService.getPokemonType(fighterGoh.pokemon.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
-                        <span class="{{ fighterGoh.alignment | pokemonAlignmentColor }}">
-                            {{ pokemonService.getAlignment(fighterGoh.alignment) }}
+                        <span class="{{ fighterGoh.pokemon.alignment | pokemonAlignmentColor }}">
+                            {{ pokemonService.getAlignment(fighterGoh.pokemon.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -79,21 +81,21 @@
                     <div class="card-content" style="padding: 10px 2px 10px 2px">
                         <div>
                             <small>
-                                <b>Niveau : </b> {{ fighterGoh.level }}
+                                <b>Niveau : </b> {{ fighterGoh.pokemon.level }}
                                 <br>
                                 <b>Points de vie : </b> {{ fighterGoh.currentHitPoints }} ({{
-                                    fighterGoh.hitPoints }})
+                                    fighterGoh.pokemon.hitPoints }})
                                 <br>
-                                <progress id="progressBar" max="{{ fighterGoh.hitPoints }}"
+                                <progress id="progressBar" max="{{ fighterGoh.pokemon.hitPoints }}"
                                     value="{{ fighterGoh.currentHitPoints }}"></progress>
                                 <br>
-                                <b>Protection : </b> {{ fighterGoh.protection }}
+                                <b>Protection : </b> {{ fighterGoh.pokemon.protection }}
                                 <br>
-                                <b>Attaque : </b> {{ fighterGoh.attack }}
+                                <b>Attaque : </b> {{ fighterGoh.pokemon.attack }}
                                 <br>
-                                <b>Dégâts : </b> {{ fighterGoh.damage }}D6
+                                <b>Dégâts : </b> {{ fighterGoh.pokemon.damage }}D6
                                 <br>
-                                <b>Défense : </b> {{ fighterGoh.defense }}
+                                <b>Défense : </b> {{ fighterGoh.pokemon.defense }}
                             </small>
                         </div>
                     </div>
@@ -107,9 +109,6 @@
     <div class="row">
         <ul class="collection with-header col m12">
             <li class="collection-header">
-                <button (click)="selectPokemons()" class="button buttonSelect"
-                    [disabled]="!isSelectingFighters()">Sélectionner
-                    les combattants</button>
                 <span class="space"></span>
                 <button (click)="attack()" class="button buttonAttack"
                     [disabled]="!isFighting() || (initiative == 1)">Attaquer</button>

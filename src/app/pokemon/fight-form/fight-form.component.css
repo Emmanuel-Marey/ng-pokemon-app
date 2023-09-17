@@ -53,8 +53,12 @@ progress[value]::-moz-progress-bar {
 	background-color: teal;
 }
 
-.buttonSelect {
+.buttonSelectFighters {
 	background-color: teal;
+}
+
+.buttonFight {
+	background-color: blue;
 }
 
 .buttonAttack {
