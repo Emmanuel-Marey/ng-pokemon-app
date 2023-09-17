@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { PokemonMovement } from '../pokemon-movement';
 import { PokemonSpecialAbility } from '../pokemon-specialability';
 import { PokemonSpecialDefense } from '../pokemon-specialdefense';
 
+import * as M from "materialize-css";
+
 @Component({
   selector: 'app-detail-pokemon',
   templateUrl: './detail-pokemon.component.html',
@@ -18,7 +20,7 @@ import { PokemonSpecialDefense } from '../pokemon-specialdefense';
     .special-value-row-style { height: 48px; padding: 8px 4px 2px 0px }
   `]
 })
-export class DetailPokemonComponent implements OnInit {
+export class DetailPokemonComponent implements OnInit, AfterViewInit {
   pokemon: Pokemon | undefined;
 
   constructor(
@@ -33,6 +35,12 @@ export class DetailPokemonComponent implements OnInit {
       const pokemonId: number = parseInt(id);
       this.pokemonService.getPokemonById(pokemonId).subscribe(pokemon => this.pokemon = pokemon);
     }
+  }
+
+  ngAfterViewInit(): void {
+    var modalList = document.querySelectorAll('.modal');
+    console.log('modalList: ' + modalList[0].id);
+    M.Modal.init(modalList, {});
   }
 
   getType(type: PokemonType): string {

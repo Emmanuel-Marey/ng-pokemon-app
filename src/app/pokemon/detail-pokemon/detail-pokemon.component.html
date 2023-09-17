@@ -31,7 +31,7 @@
                                 <td class="special-value-row-style">
                                     <span class="{{ pokemon.alignment | pokemonAlignmentColor }}">
                                         {{ getAlignment(pokemon.alignment) }}
-                                    </span>                                    
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
@@ -77,14 +77,16 @@
                             <tr>
                                 <td class="title-row-style"><b>Capacités spéciales :</b></td>
                                 <td class="special-value-row-style">
-                                    <span *ngFor="let specialAbility of pokemon.specialAbilities" 
+                                    <span *ngFor="let specialAbility of pokemon.specialAbilities"
                                         class="{{ specialAbility.specialAbility | pokemonSpecialAbilityColor }}">
                                         {{ getSpecialAbility(specialAbility.specialAbility) }}
                                         [
                                         <span *ngIf="specialAbility.damage"> {{ specialAbility.damage }}D6 </span>
                                         <span *ngIf="specialAbility.times"> {{ specialAbility.times }} charges</span>
-                                        <span *ngIf="specialAbility.attack"> attaque : +{{ specialAbility.attack }}</span>
-                                        <span *ngIf="specialAbility.defense"> défense : +{{ specialAbility.defense }}</span>
+                                        <span *ngIf="specialAbility.attack"> attaque : +{{ specialAbility.attack
+                                            }}</span>
+                                        <span *ngIf="specialAbility.defense"> défense : +{{ specialAbility.defense
+                                            }}</span>
                                         ]
                                     </span>
                                 </td>
@@ -103,7 +105,17 @@
                 <div class="card-action">
                     <a (click)="goToPokemonList()">Retour</a>
                     <a (click)="goToEditPokemon(pokemon)">Éditer</a>
-                    <a (click)="deletePokemon(pokemon)">Suprimer</a>
+                    <a class="button modal-trigger" href="#confirmationSuppression">Suprimer</a>
+                </div>
+                <div id="confirmationSuppression" class="modal">
+                    <div class="modal-content">
+                        <h4>Suppression</h4>
+                        <p>Êtes-vous sûr de vouloir supprimer ce pokémon ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a (click)="deletePokemon(pokemon)" class="modal-close waves-effect waves-green btn-flat">Oui</a>
+                        <a class="modal-close waves-effect waves-green btn-flat">Non</a>
+                    </div>
                 </div>
             </div>
         </div>

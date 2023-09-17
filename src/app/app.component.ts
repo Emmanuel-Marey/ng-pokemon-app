@@ -21,11 +21,16 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     var modalList = document.querySelectorAll('.modal');
+    console.log('modalList: ' + modalList[0].id);
     M.Modal.init(modalList, {});
   }
 
   public logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  public isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

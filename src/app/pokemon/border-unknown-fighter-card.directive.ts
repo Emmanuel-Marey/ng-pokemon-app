@@ -6,7 +6,7 @@ import { Directive, ElementRef } from '@angular/core';
 export class BorderUnknownFighterCardDirective {
 
   private selectedDefaultBorderColor: string = "gray";
-  private defaultHeight: number = 300;
+  private defaultHeight: number = 320;
 
   constructor(private el: ElementRef) {
   }

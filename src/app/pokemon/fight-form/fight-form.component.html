@@ -13,12 +13,12 @@
                     <br />
                     <div style="text-align: center">
                         <span class="{{ pokemonFighterAsh.type | pokemonTypeColor }}">
-                            {{ getType(pokemonFighterAsh.type) }}
+                            {{ pokemonFighterAsh.getType(pokemonFighterAsh.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
                         <span class="{{ pokemonFighterAsh.alignment | pokemonAlignmentColor }}">
-                            {{ getAlignment(pokemonFighterAsh.alignment) }}
+                            {{ pokemonFighterAsh.getAlignment(pokemonFighterAsh.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -66,12 +66,12 @@
                     <br />
                     <div style="text-align: center">
                         <span class="{{ pokemonFighterGoh.type | pokemonTypeColor }}">
-                            {{ getType(pokemonFighterGoh.type) }}
+                            {{ pokemonFighterGoh.getType(pokemonFighterGoh.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
                         <span class="{{ pokemonFighterGoh.alignment | pokemonAlignmentColor }}">
-                            {{ getAlignment(pokemonFighterGoh.alignment) }}
+                            {{ pokemonFighterGoh.getAlignment(pokemonFighterGoh.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -107,15 +107,15 @@
     <div class="row">
         <ul class="collection with-header col m12">
             <li class="collection-header">
-                <button (click)="selectOpponents()" class="button buttonSelect"
-                    [disabled]="opponentsSelected">Sélectionner
+                <button (click)="selectPokemons()" class="button buttonSelect"
+                    [disabled]="!isSelectingFighters()">Sélectionner
                     les combattants</button>
                 <span class="space"></span>
                 <button (click)="attack()" class="button buttonAttack"
-                    [disabled]="!opponentsSelected || (initiative == 1)">Attaquer</button>
+                    [disabled]="!isFighting() || (initiative == 1)">Attaquer</button>
                 <span class="space"></span>
                 <button (click)="defend()" class="button buttonDefense"
-                    [disabled]="!opponentsSelected || (initiative == 0)">Défendre</button>
+                    [disabled]="!isFighting() || (initiative == 0)">Défendre</button>
             </li>
             <li class="collection-item">
                 <p>
@@ -129,7 +129,7 @@
             <li class="collection-item">
                 <p>
                     {{ rounds[1] }}<br>
-                    <span *ngIf="hits[1] == 1"><button class="hit">Raté</button></span>
+                    <span *ngIf="hits[1] == 1"><button class="hit">Esquivé</button></span>
                     <span *ngIf="hits[1] == 2"><button class="miss">Blessé</button></span>
                     <span *ngIf="hits[1] == 3"><button class="defeat">Défaite</button></span>
                     <span class="space"></span>{{ messages[1] }}

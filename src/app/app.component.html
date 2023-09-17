@@ -10,21 +10,23 @@
         <li><a href="fight">ASH vs GOH</a></li>
       </ul>
       <div class="nav-content">
-        <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal modal-trigger" href="#confirmation">
-          <i class="material-icons" style="font-size: 36px">close</i>
-        </a>
+        <ng-template [ngIf]="isLoggedIn()">
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal modal-trigger" href="#deconnection">
+            <i class="material-icons" style="font-size: 36px">close</i>
+          </a>
+        </ng-template>
       </div>
     </div>
   </nav>
 
-  <div id="confirmation" class="modal">
+  <div id="deconnection" class="modal">
     <div class="modal-content">
-        <h4>Confirmation</h4>
-        <p>Êtes-vous sûr de vouloir quitter le jeu ?</p>
+      <h4>Confirmation</h4>
+      <p>Êtes-vous sûr de vouloir quitter le jeu ?</p>
     </div>
     <div class="modal-footer">
-        <a (click)="logout()" class="modal-close waves-effect waves-green btn-flat">Oui</a>
-        <a class="modal-close waves-effect waves-green btn-flat">Non</a>
+      <a (click)="logout()" class="modal-close waves-effect waves-green btn-flat">Oui</a>
+      <a class="modal-close waves-effect waves-green btn-flat">Non</a>
     </div>
   </div>
 

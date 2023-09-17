@@ -1,25 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
-import { PokemonType } from '../pokemon-type';
-import { PokemonAlignment } from '../pokemon-alignment';
 import { PokemonService } from '../pokemon.service';
-import { PokemonFighter } from '../pokemonFighter';
+import { PokemonFighter } from '../pokemon-fighter';
 import { PokemonSpecialAbility } from '../pokemon-specialability';
+
+export enum GamePhase {
+  notStarted = 0,
+  startGame = 1,
+  selectTeams = 2,
+  selectFighters = 3,
+  fighting = 4,
+  nextPokemons = 5,
+  endGame = 6
+}
+
+export enum FightPhase {
+  startFight = 0,
+  initiative = 1,
+  newRound = 2,
+  attack = 3,
+  defend = 4,
+  endFight = 5
+}
 
 @Component({
   selector: 'app-fight-form',
   templateUrl: './fight-form.component.html',
   styleUrls: ['./fight-form.component.css']
 })
-export class FightFormComponent implements OnInit {
+export class FightFormComponent implements OnInit, AfterViewInit {
   pokemonList: Pokemon[];
 
-  opponentsSelected: Boolean = false;
+  gamePhase: GamePhase = GamePhase.notStarted;
 
   pokemonFighterAsh: PokemonFighter;
   pokemonFighterGoh: PokemonFighter;
 
-  round: number = 0;
+  round: number;
   initiative: number = 0;
 
   rounds: string[] = [];
@@ -37,20 +54,63 @@ export class FightFormComponent implements OnInit {
     );
   }
 
-  selectOpponents(): void {
+  ngAfterViewInit(): void {
+    this.gamePhase = GamePhase.startGame;
+    this.gamePhase = GamePhase.selectTeams;
+    this.gamePhase = GamePhase.selectFighters;
+  }
+
+  private nextGamePhase(): void {
+    if (this.gamePhase == GamePhase.notStarted) {
+      this.startGame();
+    } else if (this.gamePhase == GamePhase.startGame) {
+      this.selectTeams();
+    }
+  }
+
+  private startGame(): void {
+    this.gamePhase = GamePhase.startGame;
+  }
+
+  private selectTeams(): void {
+    this.gamePhase = GamePhase.selectTeams;
+  }
+
+  isSelectingFighters(): boolean {
+    return this.gamePhase == GamePhase.selectFighters;
+  }
+
+  private selectFighters(): void {
+    this.gamePhase = GamePhase.selectFighters;
+  }
+
+  private defineInitiative(): void {
+  }
+
+  private startFight(): void {
+    this.gamePhase = GamePhase.fighting;
+    this.round = 1;
+  }
+
+  isFighting(): boolean {
+    return this.gamePhase == GamePhase.fighting;
+  }
+
+
+  selectPokemons(): void {
     var pokemonAsh = this.pokemonList.find(p => p.id == 1);
     if (pokemonAsh) {
-      this.pokemonFighterAsh = this.selectPokemonFighter(pokemonAsh, 0);
+      this.pokemonFighterAsh = this.selectPokemon(pokemonAsh, 0);
     }
     var pokemonGoh = this.pokemonList.find(p => p.id == 37);
     if (pokemonGoh) {
-      this.pokemonFighterGoh = this.selectPokemonFighter(pokemonGoh, 1);
+      this.pokemonFighterGoh = this.selectPokemon(pokemonGoh, 1);
     }
 
-    this.opponentsSelected = true;
+    this.startFight();
   }
 
-  selectPokemonFighter(pokemon: Pokemon, team: number): PokemonFighter {
+  selectPokemon(pokemon: Pokemon, team: number): PokemonFighter {
     var pokemonFighter = new PokemonFighter(
       pokemon.id,
       pokemon.name,
@@ -75,14 +135,6 @@ export class FightFormComponent implements OnInit {
     pokemonFighter.team = team;
     pokemonFighter.currentHitPoints = pokemonFighter.hitPoints;
     return pokemonFighter;
-  }
-
-  getType(type: PokemonType): string {
-    return PokemonType.getType(type);
-  }
-
-  getAlignment(alignment: PokemonAlignment): string {
-    return PokemonAlignment.getAlignment(alignment);
   }
 
   attack(): void {
@@ -130,12 +182,13 @@ export class FightFormComponent implements OnInit {
             if (attacker.specialAbilities[0].damage != undefined) {
               var extraDamage = this.getD6nTimes(attacker.specialAbilities[0].damage)
               defender.currentHitPoints -= extraDamage;
-              message = message + `Dégâts électriques : ${extraDamage}`;
+              message = `${message}Dégâts électriques : ${extraDamage}`;
             }
           }
         }
 
         if (defender.currentHitPoints <= 0) {
+          defender.currentHitPoints = 0;
           this.hits[this.initiative] = 3;
         }
       }
@@ -155,7 +208,7 @@ export class FightFormComponent implements OnInit {
   private getD6nTimes(times: number): number {
     let total = 0;
     for (var i = 0; i < times; i++) {
-      total += this.getRandomInt(1, 6);
+      total += this.getD6();
     }
     return total;
   }
