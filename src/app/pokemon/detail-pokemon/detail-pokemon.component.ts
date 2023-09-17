@@ -3,11 +3,6 @@ import { Pokemon } from "../pokemon";
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PokemonType } from '../pokemon-type';
-import { PokemonAlignment } from '../pokemon-alignment';
-import { PokemonMovement } from '../pokemon-movement';
-import { PokemonSpecialAbility } from '../pokemon-specialability';
-import { PokemonSpecialDefense } from '../pokemon-specialdefense';
 
 import * as M from "materialize-css";
 
@@ -21,16 +16,20 @@ import * as M from "materialize-css";
   `]
 })
 export class DetailPokemonComponent implements OnInit, AfterViewInit {
+  pokemonService: PokemonService;
   pokemon: Pokemon | undefined;
 
   constructor(
-    private pokemonService: PokemonService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private toasterService: ToastrService) { }
+    private _pokemonService: PokemonService,
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _toasterService: ToastrService) {
+    this.pokemonService = this._pokemonService;
+  }
 
   ngOnInit(): void {
-    const id: string | null = this.route.snapshot.paramMap.get('id');
+    const id: string | null = this._route.snapshot.paramMap.get('id');
+    console.log("id: " + id);
     if (id) {
       const pokemonId: number = parseInt(id);
       this.pokemonService.getPokemonById(pokemonId).subscribe(pokemon => this.pokemon = pokemon);
@@ -43,44 +42,24 @@ export class DetailPokemonComponent implements OnInit, AfterViewInit {
     M.Modal.init(modalList, {});
   }
 
-  getType(type: PokemonType): string {
-    return PokemonType.getType(type);
-  }
-  
-  getAlignment(alignment: PokemonAlignment): string {
-    return PokemonAlignment.getAlignment(alignment);
-  }
- 
-  getMovement(movement: PokemonMovement): string {
-    return PokemonMovement.getMovement(movement);
-  }
- 
-  getSpecialAbility(specialAbility: PokemonSpecialAbility): string {
-    return PokemonSpecialAbility.getSpecialAbility(specialAbility);
-  }
-
-  getSpecialDefense(specialDefense: PokemonSpecialDefense): string {
-    return PokemonSpecialDefense.getSpecialDefense(specialDefense);
-  }
-  
   deletePokemon(pokemon: Pokemon) {
     this.pokemonService.deletePokemonById(pokemon.id)
       .subscribe({
         next: () => {
           this.goToPokemonList()
-          this.toasterService.success(`Le pokémon a été supprimé avec succès.`, 'Suppression effectuée', {timeOut: 2500});
+          this._toasterService.success(`Le pokémon a été supprimé avec succès.`, 'Suppression effectuée', { timeOut: 2500 });
         },
         error: (error) => {
-          this.toasterService.error(`La supression a échoué ${error}`, 'Erreur lors de la suppression', {timeOut: 2500});
+          this._toasterService.error(`La supression a échoué ${error}`, 'Erreur lors de la suppression', { timeOut: 2500 });
         }
-    });
+      });
   }
 
   goToPokemonList() {
-    this.router.navigate(['/pokemons']);
+    this._router.navigate(['/pokemons']);
   }
 
   goToEditPokemon(pokemon: Pokemon) {
-    this.router.navigate(['/edit/pokemon', pokemon.id]);
+    this._router.navigate(['/edit/pokemon', pokemon.id]);
   }
 }

@@ -1,24 +1,24 @@
 <div class="container">
     <div class="row">
         <div class="col m4">
-            <div *ngIf="pokemonFighterAsh" class="card horizontal" pokemon-Fighter-Card
-                [pokemonFighter]=pokemonFighterAsh>
+            <div *ngIf="fighterAsh" class="card horizontal" pokemon-Fighter-Card
+                [fighter]=fighterAsh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
-                        <b>{{ pokemonFighterAsh.id }} - {{ pokemonFighterAsh.name }}</b>
+                        <b>{{ fighterAsh.id }} - {{ fighterAsh.name }}</b>
                     </div>
                     <div>
-                        <img [src]="pokemonFighterAsh.picture" />
+                        <img [src]="fighterAsh.picture" />
                     </div>
                     <br />
                     <div style="text-align: center">
-                        <span class="{{ pokemonFighterAsh.type | pokemonTypeColor }}">
-                            {{ pokemonFighterAsh.getType(pokemonFighterAsh.type) }}
+                        <span class="{{ fighterAsh.type | pokemonTypeColor }}">
+                            {{ pokemonService.getPokemonType(fighterAsh.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
-                        <span class="{{ pokemonFighterAsh.alignment | pokemonAlignmentColor }}">
-                            {{ pokemonFighterAsh.getAlignment(pokemonFighterAsh.alignment) }}
+                        <span class="{{ fighterAsh.alignment | pokemonAlignmentColor }}">
+                            {{ pokemonService.getAlignment(fighterAsh.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -26,27 +26,27 @@
                     <div class="card-content" style="padding: 10px 2px 10px 2px">
                         <div>
                             <small>
-                                <b>Niveau : </b> {{ pokemonFighterAsh.level }}
+                                <b>Niveau : </b> {{ fighterAsh.level }}
                                 <br>
-                                <b>Points de vie : </b> {{ pokemonFighterAsh.currentHitPoints }} ({{
-                                pokemonFighterAsh.hitPoints }})
+                                <b>Points de vie : </b> {{ fighterAsh.currentHitPoints }} ({{
+                                    fighterAsh.hitPoints }})
                                 <br>
-                                <progress id="progressBar" max="{{ pokemonFighterAsh.hitPoints }}"
-                                    value="{{ pokemonFighterAsh.currentHitPoints }}"></progress>
+                                <progress id="progressBar" max="{{ fighterAsh.hitPoints }}"
+                                    value="{{ fighterAsh.currentHitPoints }}"></progress>
                                 <br>
-                                <b>Protection : </b> {{ pokemonFighterAsh.protection }}
+                                <b>Protection : </b> {{ fighterAsh.protection }}
                                 <br>
-                                <b>Attaque : </b> {{ pokemonFighterAsh.attack }}
+                                <b>Attaque : </b> {{ fighterAsh.attack }}
                                 <br>
-                                <b>Dégâts : </b> {{ pokemonFighterAsh.damage }}D6
+                                <b>Dégâts : </b> {{ fighterAsh.damage }}D6
                                 <br>
-                                <b>Défense : </b> {{ pokemonFighterAsh.defense }}
+                                <b>Défense : </b> {{ fighterAsh.defense }}
                             </small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="!pokemonFighterAsh" class="card horizontal" pokemon-Unknown-Fighter-Card>
+            <div *ngIf="!fighterAsh" class="card horizontal" pokemon-Unknown-Fighter-Card>
                 <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
             </div>
         </div>
@@ -54,24 +54,24 @@
             <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
         </div>
         <div class="col m4">
-            <div *ngIf="pokemonFighterGoh" class="card horizontal" pokemon-Fighter-Card
-                [pokemonFighter]=pokemonFighterGoh>
+            <div *ngIf="fighterGoh" class="card horizontal" pokemon-Fighter-Card
+                [fighter]=fighterGoh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
-                        <b>{{ pokemonFighterGoh.id }} - {{ pokemonFighterGoh.name }}</b>
+                        <b>{{ fighterGoh.id }} - {{ fighterGoh.name }}</b>
                     </div>
                     <div>
-                        <img [src]="pokemonFighterGoh.picture" />
+                        <img [src]="fighterGoh.picture" />
                     </div>
                     <br />
                     <div style="text-align: center">
-                        <span class="{{ pokemonFighterGoh.type | pokemonTypeColor }}">
-                            {{ pokemonFighterGoh.getType(pokemonFighterGoh.type) }}
+                        <span class="{{ fighterGoh.type | pokemonTypeColor }}">
+                            {{ pokemonService.getPokemonType(fighterGoh.type) }}
                         </span>
                     </div>
                     <div style="text-align: center">
-                        <span class="{{ pokemonFighterGoh.alignment | pokemonAlignmentColor }}">
-                            {{ pokemonFighterGoh.getAlignment(pokemonFighterGoh.alignment) }}
+                        <span class="{{ fighterGoh.alignment | pokemonAlignmentColor }}">
+                            {{ pokemonService.getAlignment(fighterGoh.alignment) }}
                         </span>
                     </div>
                 </div>
@@ -79,27 +79,27 @@
                     <div class="card-content" style="padding: 10px 2px 10px 2px">
                         <div>
                             <small>
-                                <b>Niveau : </b> {{ pokemonFighterGoh.level }}
+                                <b>Niveau : </b> {{ fighterGoh.level }}
                                 <br>
-                                <b>Points de vie : </b> {{ pokemonFighterGoh.currentHitPoints }} ({{
-                                pokemonFighterGoh.hitPoints }})
+                                <b>Points de vie : </b> {{ fighterGoh.currentHitPoints }} ({{
+                                    fighterGoh.hitPoints }})
                                 <br>
-                                <progress id="progressBar" max="{{ pokemonFighterGoh.hitPoints }}"
-                                    value="{{ pokemonFighterGoh.currentHitPoints }}"></progress>
+                                <progress id="progressBar" max="{{ fighterGoh.hitPoints }}"
+                                    value="{{ fighterGoh.currentHitPoints }}"></progress>
                                 <br>
-                                <b>Protection : </b> {{ pokemonFighterGoh.protection }}
+                                <b>Protection : </b> {{ fighterGoh.protection }}
                                 <br>
-                                <b>Attaque : </b> {{ pokemonFighterGoh.attack }}
+                                <b>Attaque : </b> {{ fighterGoh.attack }}
                                 <br>
-                                <b>Dégâts : </b> {{ pokemonFighterGoh.damage }}D6
+                                <b>Dégâts : </b> {{ fighterGoh.damage }}D6
                                 <br>
-                                <b>Défense : </b> {{ pokemonFighterGoh.defense }}
+                                <b>Défense : </b> {{ fighterGoh.defense }}
                             </small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="!pokemonFighterGoh" class="card horizontal" pokemon-Unknown-Fighter-Card>
+            <div *ngIf="!fighterGoh" class="card horizontal" pokemon-Unknown-Fighter-Card>
                 <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
             </div>
         </div>

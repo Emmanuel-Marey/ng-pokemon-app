@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
-import { PokemonType } from '../pokemon-type';
-import { PokemonAlignment } from '../pokemon-alignment';
-import { PokemonMovement } from '../pokemon-movement';
-import { PokemonSpecialAbility } from '../pokemon-specialability';
-import { PokemonSpecialDefense } from '../pokemon-specialdefense';
+import { PokemonType } from '../parameters/pokemon-type';
+import { PokemonAlignment } from '../parameters/pokemon-alignment';
+import { PokemonMovement } from '../parameters/pokemon-movement';
+import { PokemonSpecialAbility } from '../parameters/pokemon-specialability';
+import { PokemonSpecialDefense } from '../parameters/pokemon-specialdefense';
 
 @Component({
   selector: 'app-list-pokemons',
@@ -20,44 +20,22 @@ import { PokemonSpecialDefense } from '../pokemon-specialdefense';
   ]
 })
 export class ListPokemonsComponent implements OnInit {
+  pokemonService: PokemonService;
   pokemonList: Pokemon[];
   largeCard: boolean = false;
 
   constructor(
-    private router: Router,
-    private pokemonService: PokemonService) { }
+    private _pokemonService: PokemonService,
+    private _router: Router) {
+    this.pokemonService = this._pokemonService;
+  }
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList);
-  }
-
-  getType(type: PokemonType): string {
-    return PokemonType.getType(type);
-  }
-
-  getAlignment(alignment: PokemonAlignment): string {
-    return PokemonAlignment.getAlignment(alignment);
-  }
-
-  getShortDescription(description: string): string {
-    var index = description.indexOf(".");
-    return description.substring(0, index +1);
-  }
-
-  getMovement(movement: PokemonMovement): string {
-    return PokemonMovement.getMovement(movement);
-  }
-
-  getSpecialAbility(specialAbility: PokemonSpecialAbility): string {
-    return PokemonSpecialAbility.getSpecialAbility(specialAbility);
-  }
-
-  getSpecialDefense(specialDefense: PokemonSpecialDefense): string {
-    return PokemonSpecialDefense.getSpecialDefense(specialDefense);
+    this._pokemonService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList);
   }
 
   goToPokemon(pokemon: Pokemon) {
-    this.router.navigate(['/pokemon', pokemon.id]);
+    this._router.navigate(['/pokemon', pokemon.id]);
   }
 
   sortPokemonListById() {

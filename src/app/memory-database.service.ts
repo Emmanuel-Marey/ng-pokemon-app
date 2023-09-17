@@ -1,20 +1,44 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { POKEMONS } from './mock-pokemon/mock-pokemon-list';
+import { MockPokemonStorageService } from './mock-pokemon-storage.service';
+import { LocalStorageService } from './local-storage.service';
+import { Pokemon } from './pokemon/pokemon';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemoryDatabaseService implements InMemoryDbService, OnDestroy {
+export class MemoryDatabaseService implements InMemoryDbService {
 
-  // Il faut lire les pokemon depuis le localstorage s'ils existent, sinon depuis le mock.
-  createDb() {
-    let pokemons = POKEMONS;
-    return { pokemons };
+  pokemons: Pokemon[];
+
+  constructor(
+    private mockPokemonStorageService: MockPokemonStorageService,
+    private localStorageService: LocalStorageService) {
   }
 
-  // Il faut sauvegarder les données dans le localstorage avant de quitter et effectuer un dump sur le disque.
-  ngOnDestroy() {
+  clearDb() {
+    this.localStorageService.clearData();
+  }
 
+  createDb() {
+    console.log("Create database");
+
+    var stringifiedData: string = this.localStorageService.getData("pokemons");
+    if (stringifiedData) {
+      console.log("Load pokemons from local storage");
+      var pokemons = <Pokemon[]>JSON.parse(stringifiedData);
+      this.pokemons = pokemons;
+      return { pokemons };
+    } else {
+      console.log("Load pokemons from json file");
+      var pokemons = this.mockPokemonStorageService.loadFromJsonFile();
+      this.pokemons = pokemons;
+      return { pokemons };
+    }
+  }
+
+  saveDb() {
+    var json = JSON.stringify(this.pokemons);
+    this.localStorageService.saveData("pokemons", json);
   }
 }

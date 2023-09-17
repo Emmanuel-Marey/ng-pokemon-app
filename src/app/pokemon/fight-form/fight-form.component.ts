@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
 import { PokemonService } from '../pokemon.service';
-import { PokemonFighter } from '../pokemon-fighter';
-import { PokemonSpecialAbility } from '../pokemon-specialability';
+import { Fighter } from '../fighter';
+import { PokemonSpecialAbility } from '../parameters/pokemon-specialability';
 
 export enum GamePhase {
   notStarted = 0,
@@ -29,12 +29,13 @@ export enum FightPhase {
   styleUrls: ['./fight-form.component.css']
 })
 export class FightFormComponent implements OnInit, AfterViewInit {
+  pokemonService: PokemonService;
   pokemonList: Pokemon[];
 
   gamePhase: GamePhase = GamePhase.notStarted;
 
-  pokemonFighterAsh: PokemonFighter;
-  pokemonFighterGoh: PokemonFighter;
+  fighterAsh: Fighter;
+  fighterGoh: Fighter;
 
   round: number;
   initiative: number = 0;
@@ -44,7 +45,9 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   hits: number[] = [0, 0];
 
   constructor(
-    private pokemonService: PokemonService) { }
+    private _pokemonService: PokemonService) {
+    this.pokemonService = this._pokemonService;
+  }
 
   ngOnInit(): void {
     this.pokemonService.getPokemonList().subscribe(
@@ -96,22 +99,21 @@ export class FightFormComponent implements OnInit, AfterViewInit {
     return this.gamePhase == GamePhase.fighting;
   }
 
-
   selectPokemons(): void {
-    var pokemonAsh = this.pokemonList.find(p => p.id == 1);
+    var pokemonAsh = this.pokemonList.find(pokemon => pokemon.id == 1);
     if (pokemonAsh) {
-      this.pokemonFighterAsh = this.selectPokemon(pokemonAsh, 0);
+      this.fighterAsh = this.selectPokemon(pokemonAsh, 0);
     }
-    var pokemonGoh = this.pokemonList.find(p => p.id == 37);
+    var pokemonGoh = this.pokemonList.find(pokemon => pokemon.id == 37);
     if (pokemonGoh) {
-      this.pokemonFighterGoh = this.selectPokemon(pokemonGoh, 1);
+      this.fighterGoh = this.selectPokemon(pokemonGoh, 1);
     }
 
     this.startFight();
   }
 
-  selectPokemon(pokemon: Pokemon, team: number): PokemonFighter {
-    var pokemonFighter = new PokemonFighter(
+  selectPokemon(pokemon: Pokemon, team: number): Fighter {
+    var fighter = new Fighter(
       pokemon.id,
       pokemon.name,
       pokemon.level,
@@ -132,26 +134,26 @@ export class FightFormComponent implements OnInit, AfterViewInit {
       pokemon.picture,
       pokemon.created,
       pokemon.updated);
-    pokemonFighter.team = team;
-    pokemonFighter.currentHitPoints = pokemonFighter.hitPoints;
-    return pokemonFighter;
+    fighter.team = team;
+    fighter.currentHitPoints = fighter.hitPoints;
+    return fighter;
   }
 
   attack(): void {
     this.round += 1;
 
-    this.resolveAttack(this.pokemonFighterAsh, this.pokemonFighterGoh);
+    this.resolveAttack(this.fighterAsh, this.fighterAsh);
 
     this.initiative = 1;
   }
 
   defend(): void {
-    this.resolveAttack(this.pokemonFighterGoh, this.pokemonFighterAsh);
+    this.resolveAttack(this.fighterGoh, this.fighterAsh);
 
     this.initiative = 0;
   }
 
-  private resolveAttack(attacker: PokemonFighter, defender: PokemonFighter) {
+  private resolveAttack(attacker: Fighter, defender: Fighter) {
     var round = `Round ${this.round} / ${attacker.team == 0 ? "Ash" : "Goh"}`;
     this.rounds[this.initiative] = round;
 

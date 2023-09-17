@@ -1,10 +1,10 @@
-import { PokemonAlignment } from "./pokemon-alignment";
-import { PokemonMovement } from "./pokemon-movement";
-import { SpecialAbility } from "./pokemon-specialability";
-import { PokemonSpecialDefense } from "./pokemon-specialdefense";
-import { PokemonType } from "./pokemon-type";
+import { PokemonAlignment } from "./parameters/pokemon-alignment";
+import { PokemonMovement } from "./parameters/pokemon-movement";
+import { SpecialAbility } from "./parameters/pokemon-specialability";
+import { PokemonSpecialDefense } from "./parameters/pokemon-specialdefense";
+import { PokemonType } from "./parameters/pokemon-type";
 
-export class Pokemon  {
+export class Pokemon {
     id: number;
     name: string;
     level: number;
@@ -46,8 +46,7 @@ export class Pokemon  {
         specialDefense: PokemonSpecialDefense,
         picture: string,
         created: Date,
-        updated: Date | undefined)
-    {
+        updated: Date | undefined) {
         this.id = id;
         this.name = name;
         this.level = level;

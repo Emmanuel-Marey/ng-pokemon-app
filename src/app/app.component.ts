@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-
-import * as M from "materialize-css";
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { MemoryDatabaseService } from './memory-database.service';
+
+import * as M from "materialize-css";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     private authService: AuthService, 
-    private router: Router)
+    private router: Router,
+    private memoryDatabaseService: MemoryDatabaseService)
   { }
 
   ngOnInit(): void {
@@ -25,12 +27,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     M.Modal.init(modalList, {});
   }
 
-  public logout() {
+  logout() {
+    this.memoryDatabaseService.saveDb();
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  public isLoggedIn() {
+  isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 }

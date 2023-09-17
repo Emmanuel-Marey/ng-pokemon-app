@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PokemonAlignment } from './pokemon-alignment';
+import { PokemonAlignment } from '../parameters/pokemon-alignment';
 
 @Pipe({
   name: 'pokemonAlignmentColor'

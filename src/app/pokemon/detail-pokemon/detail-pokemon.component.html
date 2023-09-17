@@ -22,7 +22,7 @@
                                 <td class="title-row-style"><b>Type (sous-type) :</b></td>
                                 <td class="special-value-row-style">
                                     <span class="{{ pokemon.type | pokemonTypeColor }}">
-                                        {{ getType(pokemon.type) }} ({{ pokemon.subType }})
+                                        {{ pokemonService.getPokemonType(pokemon.type) }} ({{ pokemon.subType }})
                                     </span>
                                 </td>
                             </tr>
@@ -30,7 +30,7 @@
                                 <td class="title-row-style"><b>Alignement :</b></td>
                                 <td class="special-value-row-style">
                                     <span class="{{ pokemon.alignment | pokemonAlignmentColor }}">
-                                        {{ getAlignment(pokemon.alignment) }}
+                                        {{ pokemonService.getAlignment(pokemon.alignment) }}
                                     </span>
                                 </td>
                             </tr>
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td class="title-row-style"><b>Mouvement :</b></td>
-                                <td class="value-row-style">{{ getMovement(pokemon.movement) }}</td>
+                                <td class="value-row-style">{{ pokemonService.getMovement(pokemon.movement) }}</td>
                             </tr>
                             <tr>
                                 <td class="title-row-style"><b>Attaque :</b></td>
@@ -79,7 +79,7 @@
                                 <td class="special-value-row-style">
                                     <span *ngFor="let specialAbility of pokemon.specialAbilities"
                                         class="{{ specialAbility.specialAbility | pokemonSpecialAbilityColor }}">
-                                        {{ getSpecialAbility(specialAbility.specialAbility) }}
+                                        {{ pokemonService.getSpecialAbility(specialAbility.specialAbility) }}
                                         [
                                         <span *ngIf="specialAbility.damage"> {{ specialAbility.damage }}D6 </span>
                                         <span *ngIf="specialAbility.times"> {{ specialAbility.times }} charges</span>
@@ -95,7 +95,7 @@
                                 <td class="title-row-style"><b>Défense spéciale :</b></td>
                                 <td class="special-value-row-style">
                                     <span class="{{ pokemon.specialDefense| pokemonSpecialDefenseColor }}">
-                                        {{ getSpecialDefense(pokemon.specialDefense) }}
+                                        {{ pokemonService.getSpecialDefense(pokemon.specialDefense) }}
                                     </span>
                                 </td>
                             </tr>

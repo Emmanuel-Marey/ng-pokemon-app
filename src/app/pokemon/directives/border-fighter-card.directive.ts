@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { PokemonFighter } from './pokemon-fighter';
+import { Fighter } from '../fighter';
 
 @Directive({
   selector: '[pokemon-Fighter-Card]'
@@ -7,7 +7,7 @@ import { PokemonFighter } from './pokemon-fighter';
 export class BorderFighterCardDirective {
 
   @Input()
-  public pokemonFighter: PokemonFighter;
+  public fighter: Fighter;
 
   private selectedBorderColorAsh: string = "blue";
   private selectedBorderColorGoh: string = "red";
@@ -17,7 +17,7 @@ export class BorderFighterCardDirective {
   }
 
   ngAfterViewInit(): void {
-    if (this.pokemonFighter.team == 0) {
+    if (this.fighter.team == 0) {
       this.setBorder(this.selectedBorderColorAsh);
     } else {
       this.setBorder(this.selectedBorderColorGoh);

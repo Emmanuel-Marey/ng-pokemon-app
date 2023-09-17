@@ -3,11 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, catchError, of, tap } from 'rxjs';
 
 import { Pokemon } from "./pokemon";
-import { PokemonSpecialAbility } from "./pokemon-specialability";
-import { PokemonType } from './pokemon-type';
-import { PokemonAlignment } from './pokemon-alignment';
-import { PokemonMovement } from './pokemon-movement';
-import { PokemonSpecialDefense } from './pokemon-specialdefense';
+import { PokemonSpecialAbility } from "./parameters/pokemon-specialability";
+import { PokemonType } from './parameters/pokemon-type';
+import { PokemonAlignment } from './parameters/pokemon-alignment';
+import { PokemonMovement } from './parameters/pokemon-movement';
+import { PokemonSpecialDefense } from './parameters/pokemon-specialdefense';
 
 @Injectable()
 export class PokemonService {
@@ -79,8 +79,8 @@ export class PokemonService {
     return of(errorValue);
   }
 
-  getTypes(): number[] {
-    return PokemonType.getTypes();
+  getPokemonTypes(): number[] {
+    return PokemonType.getPokemonTypes();
   }
 
   getAlignments(): number[] {
@@ -97,5 +97,30 @@ export class PokemonService {
 
   getSpecialDefenses(): number[] {
     return PokemonSpecialDefense.getSpecialDefenses();
+  }
+
+  getPokemonType(type: PokemonType): string {
+    return PokemonType.getPokemonType(type);
+  }
+
+  getShortDescription(description: string): string {
+    var index = description.indexOf(".");
+    return description.substring(0, index +1);
+  }
+
+  getAlignment(alignment: PokemonAlignment): string {
+    return PokemonAlignment.getAlignment(alignment);
+  }
+
+  getMovement(movement: PokemonMovement): string {
+    return PokemonMovement.getMovement(movement);
+  }
+
+  getSpecialAbility(specialAbility: PokemonSpecialAbility): string {
+    return PokemonSpecialAbility.getSpecialAbility(specialAbility);
+  }
+
+  getSpecialDefense(specialDefense: PokemonSpecialDefense): string {
+    return PokemonSpecialDefense.getSpecialDefense(specialDefense);
   }
 }

@@ -46,12 +46,12 @@
                         <br />
                         <div style="text-align: center">
                             <span class="{{ pokemon.type | pokemonTypeColor}}">
-                                {{ getType(pokemon.type) }}
+                                {{ pokemonService.getPokemonType(pokemon.type) }}
                             </span>
                         </div>
                         <div style="text-align: center">
                             <span class="{{ pokemon.alignment | pokemonAlignmentColor }}">
-                                {{ getAlignment(pokemon.alignment) }}
+                                {{ pokemonService.getAlignment(pokemon.alignment) }}
                             </span>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                                     <br>
                                     <b>Protection : </b> {{ pokemon.protection }}
                                     <br>
-                                    <b>Mouvement : </b> {{ getMovement(pokemon.movement) }}
+                                    <b>Mouvement : </b> {{ pokemonService.getMovement(pokemon.movement) }}
                                     <br>
                                     <b>Attaque : </b> {{ pokemon.attack }}
                                     <br>
@@ -84,14 +84,14 @@
                                 </small>
                                 <span *ngFor="let specialAbility of pokemon.specialAbilities"
                                     class="{{ specialAbility.specialAbility | pokemonSpecialAbilityColor }}">
-                                    {{ getSpecialAbility(specialAbility.specialAbility) }}
+                                    {{ pokemonService.getSpecialAbility(specialAbility.specialAbility) }}
                                 </span>
                             </div>
                             <div>
                                 <small>
                                     <b>Défense spéciale : </b><br>
                                     <span class="{{ pokemon.specialDefense| pokemonSpecialDefenseColor }}">
-                                        {{ getSpecialDefense(pokemon.specialDefense) }}
+                                        {{ pokemonService.getSpecialDefense(pokemon.specialDefense) }}
                                     </span>
                                 </small>
                             </div>
@@ -116,18 +116,18 @@
                                 <small>
                                     <b>Niveau : </b> {{ pokemon.level }}
                                     <br>
-                                    <b>Description : </b> {{ getShortDescription(pokemon.description) }}
+                                    <b>Description : </b> {{ pokemonService.getShortDescription(pokemon.description) }}
                                     <br>
                                 </small>
                             </div>
                             <div style="text-align: center">
                                 <span class="{{ pokemon.type | pokemonTypeColor }}">
-                                    {{ getType(pokemon.type) }}
+                                    {{ pokemonService.getPokemonType(pokemon.type) }}
                                 </span>
                             </div>
                             <div style="text-align: center">
                                 <span class="{{ pokemon.alignment | pokemonAlignmentColor }}">
-                                    {{ getAlignment(pokemon.alignment) }}
+                                    {{ pokemonService.getAlignment(pokemon.alignment) }}
                                 </span>
                             </div>
                         </div>

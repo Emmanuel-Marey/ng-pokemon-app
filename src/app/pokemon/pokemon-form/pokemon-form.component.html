@@ -22,7 +22,7 @@
                         <div *ngFor="let type of types">
                             <label><input id="{{ type }}" name="selectedType" [(ngModel)]="pokemon.type" [value]="type"
                                     type="radio" />
-                                <span>{{ getType(type) }}</span>
+                                <span>{{ pokemonService.getPokemonType(type) }}</span>
                             </label>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div *ngFor="let alignment of alignments">
                             <label><input id="{{ alignment }}" name="selectedAlignment" [(ngModel)]="pokemon.alignment"
                                     [value]="alignment" type="radio" />
-                                <span>{{ getAlignment(alignment) }}</span>
+                                <span>{{ pokemonService.getAlignment(alignment) }}</span>
                             </label>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         <div *ngFor="let movement of movements">
                             <label><input id="{{ movement }}" name="selectedMovement" [(ngModel)]="pokemon.movement"
                                     [value]="movement" type="radio" />
-                                <span>{{ getMovement(movement) }}</span>
+                                <span>{{ pokemonService.getMovement(movement) }}</span>
                             </label>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                     [value]="specialAbility" [checked]="hasSpecialAbility(specialAbility)"
                                     [disabled]="!isSpecialAbilityValidNew(specialAbility)"
                                     (change)="selectSpecialAbility($event, specialAbility)" />
-                                <span style="padding: 0px 0px 0px 32px">{{ getSpecialAbility(specialAbility) }}</span>
+                                <span style="padding: 0px 0px 0px 32px">{{ pokemonService.getSpecialAbility(specialAbility) }}</span>
                             </label>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                         <div *ngFor="let specialDefense of specialDefenses">
                             <label><input id="{{ specialDefense }}" name="selectedSpecialDefense" [(ngModel)]="pokemon.specialDefense"
                                 [value]="specialDefense" type="radio" />
-                                <span>{{ getSpecialDefense(specialDefense) }}</span>
+                                <span>{{ pokemonService.getSpecialDefense(specialDefense) }}</span>
                             </label>
                         </div>
                     </div>

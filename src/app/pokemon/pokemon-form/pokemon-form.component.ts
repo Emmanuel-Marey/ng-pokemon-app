@@ -3,11 +3,7 @@ import { PokemonService } from '../pokemon.service';
 import { Pokemon } from "../pokemon";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PokemonSpecialAbility, SPECIAL_ABILITIES, SpecialAbility } from '../pokemon-specialability';
-import { PokemonType } from '../pokemon-type';
-import { PokemonAlignment } from '../pokemon-alignment';
-import { PokemonMovement } from '../pokemon-movement';
-import { PokemonSpecialDefense } from '../pokemon-specialdefense';
+import { PokemonSpecialAbility, SPECIAL_ABILITIES, SpecialAbility } from '../parameters/pokemon-specialability';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -15,6 +11,7 @@ import { PokemonSpecialDefense } from '../pokemon-specialdefense';
   styleUrls: ['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
+  pokemonService: PokemonService;
   @Input() pokemon: Pokemon;
 
   private maxSpecialAbilities: number = 3;
@@ -26,36 +23,18 @@ export class PokemonFormComponent implements OnInit {
   specialDefenses: number[];
 
   constructor(
-    private pokemonService: PokemonService,
-    private router: Router,
-    private toasterService: ToastrService) { }
+    private _pokemonService: PokemonService,
+    private _router: Router,
+    private _toasterService: ToastrService) {
+    this.pokemonService = this._pokemonService;
+  }
 
   ngOnInit(): void {
-    this.types = this.pokemonService.getTypes();
+    this.types = this.pokemonService.getPokemonTypes();
     this.alignments = this.pokemonService.getAlignments();
     this.movements = this.pokemonService.getMovements();
     this.specialAbilities = this.pokemonService.getSpecialAbilities();
     this.specialDefenses = this.pokemonService.getSpecialDefenses();
-  }
-
-  getType(type: PokemonType): string {
-    return PokemonType.getType(type);
-  }
-
-  getAlignment(alignment: PokemonAlignment): string {
-    return PokemonAlignment.getAlignment(alignment);
-  }
-
-  getMovement(movement: PokemonMovement): string {
-    return PokemonMovement.getMovement(movement);
-  }
-
-  getSpecialAbility(specialAbility: PokemonSpecialAbility): string {
-    return PokemonSpecialAbility.getSpecialAbility(specialAbility);
-  }
-
-  getSpecialDefense(specialDefense: PokemonSpecialDefense): string {
-    return PokemonSpecialDefense.getSpecialDefense(specialDefense);
   }
 
   hasSpecialAbility(specialAbility: PokemonSpecialAbility): boolean {
@@ -67,7 +46,7 @@ export class PokemonFormComponent implements OnInit {
     const isChecked = ($event.target as HTMLInputElement).checked;
 
     if (isChecked) {
-      const parameters: SpecialAbility|undefined = SPECIAL_ABILITIES.find(x => x.specialAbility == specialAbility)
+      const parameters: SpecialAbility | undefined = SPECIAL_ABILITIES.find(x => x.specialAbility == specialAbility)
       if (parameters) {
         this.pokemon.specialAbilities.push(
           { specialAbility: specialAbility, damage: parameters.damage, times: parameters.times, attack: parameters.attack, defense: parameters.defense });
@@ -93,17 +72,17 @@ export class PokemonFormComponent implements OnInit {
     this.pokemonService.updatePokemon(this.pokemon)
       .subscribe({
         next: () => {
-          this.router.navigate(['/pokemon', this.pokemon.id]);
-          this.toasterService.success(`Le pokémon a été modifié avec succès.`, 'Modification effectuée', { timeOut: 2500 });
+          this._router.navigate(['/pokemon', this.pokemon.id]);
+          this._toasterService.success(`Le pokémon a été modifié avec succès.`, 'Modification effectuée', { timeOut: 2500 });
         },
         error: (error) => {
-          this.toasterService.error(`La modification a échoué ${error}`, 'Erreur lors de la modification', { timeOut: 2500 });
+          this._toasterService.error(`La modification a échoué ${error}`, 'Erreur lors de la modification', { timeOut: 2500 });
         }
       });
   }
 
   onCancel(): void {
-    this.router.navigate(['/pokemon', this.pokemon.id]);
-    this.toasterService.warning(`Le pokémon n'a pas été modifié.`, 'Modification annulée', { timeOut: 2500 })
+    this._router.navigate(['/pokemon', this.pokemon.id]);
+    this._toasterService.warning(`Le pokémon n'a pas été modifié.`, 'Modification annulée', { timeOut: 2500 })
   }
 }
