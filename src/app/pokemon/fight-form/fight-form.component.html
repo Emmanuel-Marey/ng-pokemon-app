@@ -51,10 +51,25 @@
         </div>
         <div class="col m4">
             <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
-            <button (click)="selectFighters()" class="button buttonSelectFighters"
-                [hidden]="!isSelectingFighters()">Sélectionner les combattants</button>
-            <button (click)="fight()" class="button buttonFight"
-                hidden>Combattre</button>
+            <div [ngSwitch]="gamePhase">
+                <!-- <div *ngSwitchCase=0>
+                    Sélection des équipes
+                    <button (click)="selectTeams()" class="button buttonSelectTeams">Sélectionner les combattants</button>
+                </div> -->
+                <div *ngSwitchCase=1>
+                    <button (click)="selectFighters()" class="button buttonSelectFighters">Sélectionner les combattants</button>
+                </div>
+                <!-- <div *ngSwitchCase=2>
+                    Sélection des combattants
+                    <button (click)="fight()" class="button buttonFight">Combattre</button>
+                </div>
+                <div *ngSwitchCase=3>
+                    Nouvelle partie
+                 </div> -->
+                <div *ngSwitchDefault>
+                    Nouvelle partie
+                </div>
+            </div>
         </div>
         <div class="col m4">
             <div *ngIf="fighterGoh" class="card horizontal" pokemon-Fighter-Card [fighter]=fighterGoh>

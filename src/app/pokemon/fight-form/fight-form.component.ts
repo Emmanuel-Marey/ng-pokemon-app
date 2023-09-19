@@ -12,11 +12,10 @@ export enum Team {
 export enum GamePhase {
   newGame = 0,
   selectTeams = 1,
-  startSelectFighters = 2,
-  endSelectFighters = 3,
-  fight = 4,
-  displayScore = 5,
-  endGame = 6
+  selectFighters = 2,
+  fight = 3,
+  displayScore = 4,
+  endGame = 5
 }
 
 export enum FightPhase {
@@ -64,15 +63,6 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.newGame();
     this.selectTeams();
-    this.selectFighters();
-  }
-
-  isSelectingTeam(): boolean {
-    return this.gamePhase == GamePhase.selectTeams;
-  }
-
-  isSelectingFighters(): boolean {
-    return this.gamePhase == GamePhase.startSelectFighters;
   }
 
   isFighting(): boolean {
@@ -88,7 +78,7 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   }
 
   selectFighters(): void {
-    this.gamePhase = GamePhase.startSelectFighters;
+    this.gamePhase = GamePhase.selectFighters;
 
     var pokemonAsh = this.pokemonList.find(pokemon => pokemon.id == 1);
     if (pokemonAsh) {
@@ -98,8 +88,6 @@ export class FightFormComponent implements OnInit, AfterViewInit {
     if (pokemonGoh) {
       this.fighterGoh = this.selectFighter(pokemonGoh, 1);
     }
-
-    this.gamePhase = GamePhase.endSelectFighters;
   }
 
   selectFighter(pokemon: Pokemon, team: number): Fighter {
