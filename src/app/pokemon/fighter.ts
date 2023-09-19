@@ -10,6 +10,6 @@ export class Fighter {
     }
 
     isDead(): boolean {
-        return this.currentHitPoints == 0;
+        return this.currentHitPoints <= 0;
     }
 }

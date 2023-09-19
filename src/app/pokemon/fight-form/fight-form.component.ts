@@ -11,8 +11,8 @@ export enum Team {
 
 export enum GamePhase {
   newGame = 0,
-  selectTeams = 1,
-  selectFighters = 2,
+  buildTeam = 1,
+  selectFighter = 2,
   fight = 3,
   displayScore = 4,
   endGame = 5
@@ -62,35 +62,35 @@ export class FightFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.newGame();
-    this.selectTeams();
-  }
-
-  isFighting(): boolean {
-    return this.gamePhase == GamePhase.fight;
   }
 
   newGame(): void {
     this.gamePhase = GamePhase.newGame;
   } 
 
-  selectTeams(): void {
-    this.gamePhase = GamePhase.selectTeams;
+  buildTeam(): void {
+    this.gamePhase = GamePhase.buildTeam;
   }
 
-  selectFighters(): void {
-    this.gamePhase = GamePhase.selectFighters;
+  selectFighter(): void {
+    this.gamePhase = GamePhase.selectFighter;
 
     var pokemonAsh = this.pokemonList.find(pokemon => pokemon.id == 1);
     if (pokemonAsh) {
-      this.fighterAsh = this.selectFighter(pokemonAsh, 0);
+      this.fighterAsh = this.createFighter(pokemonAsh, 0);
     }
+
+    this.selectRandomOpponent();
+  }
+
+  selectRandomOpponent(): void {
     var pokemonGoh = this.pokemonList.find(pokemon => pokemon.id == 37);
     if (pokemonGoh) {
-      this.fighterGoh = this.selectFighter(pokemonGoh, 1);
+      this.fighterGoh = this.createFighter(pokemonGoh, 1);
     }
   }
 
-  selectFighter(pokemon: Pokemon, team: number): Fighter {
+  createFighter(pokemon: Pokemon, team: number): Fighter {
     var fighter = new Fighter(pokemon);
     fighter.team = team;
     fighter.currentHitPoints = fighter.pokemon.hitPoints;
@@ -107,13 +107,17 @@ export class FightFormComponent implements OnInit, AfterViewInit {
 
   attack(): void {
     this.round += 1;
-    this.resolveAttack(this.fighterAsh, this.fighterAsh);
+    this.resolveAttack(this.fighterAsh, this.fighterGoh);
     this.initiative = 1;
   }
 
   defend(): void {
     this.resolveAttack(this.fighterGoh, this.fighterAsh);
     this.initiative = 0;
+  }
+  
+  isFighting(): boolean {
+    return this.gamePhase == GamePhase.fight;
   }
 
   private resolveAttack(attacker: Fighter, defender: Fighter) {
@@ -156,6 +160,7 @@ export class FightFormComponent implements OnInit, AfterViewInit {
           console.log("Mort");
           defender.currentHitPoints = 0;
           this.hits[this.initiative] = 3;
+          this.gamePhase = GamePhase.displayScore;
         }
       }
     }

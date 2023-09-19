@@ -52,22 +52,23 @@
         <div class="col m4">
             <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
             <div [ngSwitch]="gamePhase">
-                <!-- <div *ngSwitchCase=0>
-                    Sélection des équipes
-                    <button (click)="selectTeams()" class="button buttonSelectTeams">Sélectionner les combattants</button>
-                </div> -->
-                <div *ngSwitchCase=1>
-                    <button (click)="selectFighters()" class="button buttonSelectFighters">Sélectionner les combattants</button>
+                <div *ngSwitchCase=0>
+                    <button (click)="buildTeam()" class="button buttonBuildTeam">Constituer une équipe</button>
                 </div>
-                <!-- <div *ngSwitchCase=2>
-                    Sélection des combattants
+                <div *ngSwitchCase=1>
+                    <button (click)="selectFighter()" class="button buttonSelectFighter">Choisissez un combattant</button>
+                </div>
+                <div *ngSwitchCase=2>
                     <button (click)="fight()" class="button buttonFight">Combattre</button>
                 </div>
                 <div *ngSwitchCase=3>
-                    Nouvelle partie
-                 </div> -->
+                    <button (click)="fight()" class="button buttonDisplayScore">Combattre</button>
+                 </div>
+                <div *ngSwitchCase=4>
+                    <button (click)="fight()" class="button buttonNewGaame">Nouvelle partie</button>
+                 </div>
                 <div *ngSwitchDefault>
-                    Nouvelle partie
+                    Nouvelle partie (par défaut)
                 </div>
             </div>
         </div>
@@ -126,10 +127,10 @@
             <li class="collection-header">
                 <span class="space"></span>
                 <button (click)="attack()" class="button buttonAttack"
-                    [disabled]="!isFighting() || (initiative == 1)">Attaquer</button>
+                    [disabled]="!isFighting()">Attaquer</button>
                 <span class="space"></span>
                 <button (click)="defend()" class="button buttonDefense"
-                    [disabled]="!isFighting() || (initiative == 0)">Défendre</button>
+                    [disabled]="!isFighting()">Défendre</button>
             </li>
             <li class="collection-item">
                 <p>
