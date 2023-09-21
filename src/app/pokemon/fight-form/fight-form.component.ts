@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Injectable, OnInit } from '@angular/core';
 import { Pokemon } from "../pokemon";
 import { PokemonService } from '../pokemon.service';
 import { Fighter } from '../fighter';
@@ -19,11 +19,12 @@ export enum GamePhase {
 }
 
 export enum FightPhase {
-  start = 0,
-  initiative = 1,
-  attack = 2,
-  defend = 3,
-  end = 4
+  notStarted = 0,
+  started = 1,
+  initiative = 2,
+  attack = 3,
+  defend = 4,
+  finished = 5
 }
 
 @Component({
@@ -35,12 +36,18 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   pokemonService: PokemonService;
   pokemonList: Pokemon[];
 
+  gamePhaseEnum: typeof GamePhase;
   gamePhase: GamePhase = GamePhase.newGame;
+  fightPhaseEnum: typeof FightPhase;
+  fightPhase: FightPhase = FightPhase.notStarted;
 
   fighterAsh: Fighter;
   fighterGoh: Fighter;
 
   round: number;
+  initiativeAsh: number = 0;
+  initiativeGoh: number = 0;
+
   initiative: number = 0;
 
   rounds: string[] = [];
@@ -50,6 +57,9 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   constructor(
     private _pokemonService: PokemonService) {
     this.pokemonService = this._pokemonService;
+
+    this.gamePhaseEnum = GamePhase;
+    this.fightPhaseEnum = FightPhase;
   }
 
   ngOnInit(): void {
@@ -66,7 +76,11 @@ export class FightFormComponent implements OnInit, AfterViewInit {
 
   newGame(): void {
     this.gamePhase = GamePhase.newGame;
-  } 
+  }
+
+  endGame(): void {
+    this.gamePhase = GamePhase.endGame;
+  }
 
   buildTeam(): void {
     this.gamePhase = GamePhase.buildTeam;
@@ -99,10 +113,17 @@ export class FightFormComponent implements OnInit, AfterViewInit {
 
   fight(): void {
     this.gamePhase = GamePhase.fight;
+    this.fightPhase = FightPhase.started;
     this.round = 1;
   }
 
-  private defineInitiative(): void {
+  displayScore(): void {
+    this.gamePhase = GamePhase.displayScore;
+  }
+
+  defineInitiative(): void {
+    this.initiativeAsh = this.getD6();
+    this.initiativeGoh = this.getD6();
   }
 
   attack(): void {
@@ -118,6 +139,10 @@ export class FightFormComponent implements OnInit, AfterViewInit {
   
   isFighting(): boolean {
     return this.gamePhase == GamePhase.fight;
+  }
+
+  isFightFinished(): boolean {
+    return this.fightPhase == FightPhase.finished;
   }
 
   private resolveAttack(attacker: Fighter, defender: Fighter) {
@@ -160,7 +185,8 @@ export class FightFormComponent implements OnInit, AfterViewInit {
           console.log("Mort");
           defender.currentHitPoints = 0;
           this.hits[this.initiative] = 3;
-          this.gamePhase = GamePhase.displayScore;
+
+          this.fightPhase = FightPhase.finished;
         }
       }
     }

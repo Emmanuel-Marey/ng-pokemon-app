@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col m4">
+        <div class="col l4 m4">
             <div *ngIf="fighterAsh" class="card horizontal" pokemon-Fighter-Card [fighter]=fighterAsh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
@@ -28,7 +28,7 @@
                                 <b>Niveau : </b> {{ fighterAsh.pokemon.level }}
                                 <br>
                                 <b>Points de vie : </b> {{ fighterAsh.currentHitPoints }} ({{
-                                    fighterAsh.pokemon.hitPoints }})
+                                fighterAsh.pokemon.hitPoints }})
                                 <br>
                                 <progress id="progressBar" max="{{ fighterAsh.pokemon.hitPoints }}"
                                     value="{{ fighterAsh.currentHitPoints }}"></progress>
@@ -46,33 +46,36 @@
                 </div>
             </div>
             <div *ngIf="!fighterAsh" class="card horizontal" pokemon-Unknown-Fighter-Card>
-                <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
+                <img class="image-unknown-fighter" src="../../../assets/Unknown-fighter.png" />
             </div>
         </div>
-        <div class="col m4">
+        <div class="col l4 m4">
             <img src="../../../assets/Pokemon-battle.png" width="100%" style="padding-top: 12px;" />
             <div [ngSwitch]="gamePhase">
-                <div *ngSwitchCase=0>
-                    <button (click)="buildTeam()" class="button buttonBuildTeam">Constituer une équipe</button>
+                <div *ngSwitchCase="gamePhaseEnum.newGame">
+                    <button (click)="buildTeam()" class="button buttonBuildTeam">1 - Constituer une équipe</button>
                 </div>
-                <div *ngSwitchCase=1>
-                    <button (click)="selectFighter()" class="button buttonSelectFighter">Choisissez un combattant</button>
+                <div *ngSwitchCase="gamePhaseEnum.buildTeam">
+                    <button (click)="selectFighter()" class="button buttonSelectFighter">2 - Choisissez un
+                        combattant</button>
                 </div>
-                <div *ngSwitchCase=2>
-                    <button (click)="fight()" class="button buttonFight">Combattre</button>
+                <div *ngSwitchCase="gamePhaseEnum.selectFighter">
+                    <button (click)="fight()" class="button buttonFight">3 - Combattre</button>
                 </div>
-                <div *ngSwitchCase=3>
-                    <button (click)="fight()" class="button buttonDisplayScore">Combattre</button>
-                 </div>
-                <div *ngSwitchCase=4>
-                    <button (click)="fight()" class="button buttonNewGaame">Nouvelle partie</button>
-                 </div>
+                <div *ngSwitchCase="gamePhaseEnum.fight">
+                    <div *ngIf="isFightFinished()">
+                        <button (click)="displayScore()" class="button buttonDisplayScore">4 - Résultats</button>
+                    </div>
+                </div>
+                <div *ngSwitchCase="gamePhaseEnum.displayScore">
+                    <button (click)="endGame()" class="button buttonEndGame">5 - Fin de partie</button>
+                </div>
                 <div *ngSwitchDefault>
-                    Nouvelle partie (par défaut)
+                    Fin de la partie
                 </div>
             </div>
         </div>
-        <div class="col m4">
+        <div class="col l4 m4">
             <div *ngIf="fighterGoh" class="card horizontal" pokemon-Fighter-Card [fighter]=fighterGoh>
                 <div class="card-image">
                     <div class="header" style="color: blue; padding: 10px 2px 10px 10px">
@@ -100,7 +103,7 @@
                                 <b>Niveau : </b> {{ fighterGoh.pokemon.level }}
                                 <br>
                                 <b>Points de vie : </b> {{ fighterGoh.currentHitPoints }} ({{
-                                    fighterGoh.pokemon.hitPoints }})
+                                fighterGoh.pokemon.hitPoints }})
                                 <br>
                                 <progress id="progressBar" max="{{ fighterGoh.pokemon.hitPoints }}"
                                     value="{{ fighterGoh.currentHitPoints }}"></progress>
@@ -118,38 +121,43 @@
                 </div>
             </div>
             <div *ngIf="!fighterGoh" class="card horizontal" pokemon-Unknown-Fighter-Card>
-                <img src="../../../assets/Unknown-fighter.png" class="imageCenter" />
+                <img class="image-unknown-fighter" src="../../../assets/Unknown-fighter.png" />
             </div>
         </div>
     </div>
-    <div class="row">
-        <ul class="collection with-header col m12">
-            <li class="collection-header">
-                <span class="space"></span>
-                <button (click)="attack()" class="button buttonAttack"
-                    [disabled]="!isFighting()">Attaquer</button>
-                <span class="space"></span>
-                <button (click)="defend()" class="button buttonDefense"
-                    [disabled]="!isFighting()">Défendre</button>
-            </li>
-            <li class="collection-item">
-                <p>
-                    {{ rounds[0] }}<br>
-                    <span *ngIf="hits[0] == 1"><button class="miss">Raté</button></span>
-                    <span *ngIf="hits[0] == 2"><button class="hit">Touché</button></span>
-                    <span *ngIf="hits[0] == 3"><button class="victory">Victoire</button></span>
-                    <span class="space"></span>{{ messages[0] }}
-                </p>
-            </li>
-            <li class="collection-item">
-                <p>
-                    {{ rounds[1] }}<br>
-                    <span *ngIf="hits[1] == 1"><button class="hit">Esquivé</button></span>
-                    <span *ngIf="hits[1] == 2"><button class="miss">Blessé</button></span>
-                    <span *ngIf="hits[1] == 3"><button class="defeat">Défaite</button></span>
-                    <span class="space"></span>{{ messages[1] }}
-                </p>
-            </li>
-        </ul>
-    </div>
+
+    <ng-container [ngSwitch]="gamePhase">
+        <ng-container *ngSwitchCase="gamePhaseEnum.fight">
+            <div class="row">
+                <ul class="collection with-header col l12 m12">
+                    <li class="collection-header">
+                        <span class="space"></span>
+                        <button (click)="attack()" class="button buttonAttack"
+                            [disabled]="!isFighting() || isFightFinished() || (initiative == 1)">Attaquer</button>
+                        <span class="space"></span>
+                        <button (click)="defend()" class="button buttonDefense"
+                            [disabled]="!isFighting() || isFightFinished() || (initiative == 0)">Défendre</button>
+                    </li>
+                    <li class="collection-item">
+                        <p>
+                            {{ rounds[0] }}<br>
+                            <span *ngIf="hits[0] == 1"><button class="miss">Raté</button></span>
+                            <span *ngIf="hits[0] == 2"><button class="hit">Touché</button></span>
+                            <span *ngIf="hits[0] == 3"><button class="victory">Victoire</button></span>
+                            <span class="space"></span>{{ messages[0] }}
+                        </p>
+                    </li>
+                    <li class="collection-item">
+                        <p>
+                            {{ rounds[1] }}<br>
+                            <span *ngIf="hits[1] == 1"><button class="hit">Esquivé</button></span>
+                            <span *ngIf="hits[1] == 2"><button class="miss">Blessé</button></span>
+                            <span *ngIf="hits[1] == 3"><button class="defeat">Défaite</button></span>
+                            <span class="space"></span>{{ messages[1] }}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+    </ng-container>
 </div>

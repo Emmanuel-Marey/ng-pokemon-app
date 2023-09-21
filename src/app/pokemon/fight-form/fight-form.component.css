@@ -1,3 +1,12 @@
+.image-unknown-fighter {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 progress[value] {
 	--w: 150px;
 	/* the width*/
@@ -55,7 +64,8 @@ progress[value]::-moz-progress-bar {
 
 .buttonBuildTeam,
 .buttonSelectFighter,
-.buttonDisplayScore {
+.buttonDisplayScore,
+.buttonEndGame {
 	background-color: teal;
 }
 
