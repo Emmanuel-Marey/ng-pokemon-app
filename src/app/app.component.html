@@ -1,17 +1,14 @@
 <div appDisableRightClick>
   <nav class="light-blue lighten-1">
     <div class="nav-wrapper">
-      <div class="brand-logo">
-        <img src="assets/Pokemon-logo-transparent.png" width="15%" height="15%" />
-      </div>
-      <ul class="right hide-on-med-and-down" style="padding-right: 100px">
+      <ul class="center">
         <li><a href="documentation">Règles du jeu</a></li>
         <li><a href="pokemons">Pokémons</a></li>
         <li><a href="fight">ASH vs GOH</a></li>
       </ul>
       <div class="nav-content">
         <ng-template [ngIf]="isLoggedIn()">
-          <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal modal-trigger" href="#deconnection">
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light blue modal-trigger" href="#deconnection">
             <i class="material-icons" style="font-size: 36px">close</i>
           </a>
         </ng-template>
@@ -37,7 +34,7 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Angular</h5>
-          <p class="grey-text text-lighten-4">Ce jeux a été développé en Angular</p>
+          <p class="grey-text text-lighten-4">Ce mini-jeu a été développé en Angular</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Liens</h5>

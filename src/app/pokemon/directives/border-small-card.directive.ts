@@ -7,7 +7,7 @@ export class BorderSmallCardDirective {
 
   private initialBorderColor: string = "gray";
   private defaultBoderColor: string = "blue";
-  private defaultHeight: number = 300;
+  private defaultHeight: number = 320;
 
   constructor(private el: ElementRef) {
     this.setBorder(this.initialBorderColor);

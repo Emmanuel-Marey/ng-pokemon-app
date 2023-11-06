@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from './login/service/auth.service';
 import { Router } from '@angular/router';
-import { MemoryDatabaseService } from './memory-database.service';
+import { PokemonInMemoryDbService } from './pokemon/service/pokemon-in-memory-db.service';
 
 import * as M from "materialize-css";
 
@@ -13,22 +13,21 @@ import * as M from "materialize-css";
 export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router,
-    private memoryDatabaseService: MemoryDatabaseService)
-  { }
+    private pokemonInMemoryDbService: PokemonInMemoryDbService) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
     var modalList = document.querySelectorAll('.modal');
-    console.log('modalList: ' + modalList[0].id);
+    console.log('AppComponent.ngAfterViewInit: list of modal forms: ' + modalList[0].id);
     M.Modal.init(modalList, {});
   }
 
   logout() {
-    this.memoryDatabaseService.saveDb();
+    this.pokemonInMemoryDbService.saveDb();
     this.authService.logout();
     this.router.navigate(['/login']);
   }

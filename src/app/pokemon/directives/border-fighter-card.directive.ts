@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { Fighter } from '../fighter';
+import { Fighter } from '../model/pokemon-fighter';
 
 @Directive({
   selector: '[pokemon-Fighter-Card]'
@@ -11,7 +11,7 @@ export class BorderFighterCardDirective {
 
   private selectedBorderColorAsh: string = "blue";
   private selectedBorderColorGoh: string = "red";
-  private defaultHeight: number = 320;
+  private defaultHeight: number = 480;
 
   constructor(private el: ElementRef) {
   }

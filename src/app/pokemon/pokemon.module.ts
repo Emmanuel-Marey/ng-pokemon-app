@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListPokemonsComponent } from './list-pokemons/list-pokemons.component';
-import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
+import { ListPokemonsComponent } from './components/list-pokemons/list-pokemons.component';
+import { DetailPokemonComponent } from './components/detail-pokemon/detail-pokemon.component';
 import { BorderLargeCardDirective } from './directives/border-large-card.directive';
 import { BorderSmallCardDirective } from './directives/border-small-card.directive';
 import { BorderFighterCardDirective } from './directives/border-fighter-card.directive';
@@ -11,22 +11,22 @@ import { PokemonSpecialAbilityColorPipe } from './pipes/pokemon-specialability-c
 import { PokemonSpecialDefenseColorPipe } from './pipes/pokemon-specialdefense-color.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
-import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
-import { PokemonService } from './pokemon.service';
-import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+import { PokemonFormComponent } from './components/pokemon-form/pokemon-form.component';
+import { EditPokemonComponent } from './components/edit-pokemon/edit-pokemon.component';
+import { PokemonService } from './service/pokemon.service';
+import { AddPokemonComponent } from './components/add-pokemon/add-pokemon.component';
 import { LoaderComponent } from '../loader/loader.component';
-import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
+import { SearchPokemonComponent } from './components/search-pokemon/search-pokemon.component';
 import { PokemonAlignmentColorPipe } from './pipes/pokemon-alignment-color.pipe';
-import { authGuard } from '../auth.guard';
-import { AuthService } from '../auth.service';
-import { FightFormComponent } from './fight-form/fight-form.component';
+import { authGuard } from '../login/service/auth.guard';
+import { AuthService } from '../login/service/auth.service';
+import { FightPokemonFormComponent } from './components/fight-pokemon-form/fight-pokemon-form.component';
 
 const pokemonRoutes: Routes = [
   { path: 'edit/pokemon/:id', component: EditPokemonComponent, canActivate: [authGuard] },
   { path: 'pokemons', component: ListPokemonsComponent, canActivate: [authGuard] },
   { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard] },
-  { path: 'fight', component: FightFormComponent, canActivate: [authGuard] }
+  { path: 'fight', component: FightPokemonFormComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
@@ -44,7 +44,7 @@ const pokemonRoutes: Routes = [
     PokemonFormComponent,
     EditPokemonComponent,
     AddPokemonComponent,
-    FightFormComponent,
+    FightPokemonFormComponent,
     LoaderComponent,
     SearchPokemonComponent
   ],

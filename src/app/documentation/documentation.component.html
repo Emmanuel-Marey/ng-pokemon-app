@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col m7 offset-m2 text">
+        <div class="main" *ngIf="article$ | async as article">
+            <div class="main_content" [innerHTML]="article.content"></div>
+        </div>
+    </div>
+    <div class="tableofcontents">
+        <div class="tableofcontents_title">Table des matières</div>
+        <ul class="tableofcontents_list">
+            <li class="tableofcontents_item" *ngFor="let headingElement of headingElements; index as i">
+                <a class="tableofcontents_item-link"
+                    [href]="'#' + headingElement.id"
+                    [class.active]="i === activeHeadingIndex"
+                    [class.h3]="headingElement.tagName === 'H3'"
+                    [class.h4]="headingElement.tagName === 'H4'"
+                    (click)="scrollToHeading($event)">
+                    {{ headingElement.textContent }} </a>
+            </li>
+        </ul>
+    </div>
+    <div class="debug">{{ debugPosition || 0 }}</div>
+</div>

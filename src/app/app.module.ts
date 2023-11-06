@@ -11,10 +11,10 @@ import { PokemonModule } from './pokemon/pokemon.module';
 import { FormsModule } from '@angular/forms';
 import { DisableRightClickDirective } from './disable-right-click.directive';
 import { ToastrModule } from 'ngx-toastr';
-import { MemoryDatabaseService } from './memory-database.service';
-import { LoginComponent } from './login/login.component';
+import { PokemonInMemoryDbService } from './pokemon/service/pokemon-in-memory-db.service';
+import { LoginComponent } from './login/components/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
-import { InlineDocumentationComponent } from './inline-documentation/inline-documentation.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +22,14 @@ import { InlineDocumentationComponent } from './inline-documentation/inline-docu
     PageNotFoundComponent,
     DisableRightClickDirective,
     LoginComponent,
-    InlineDocumentationComponent
+    DocumentationComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(MemoryDatabaseService, { delay: 500, dataEncapsulation: false }),
+    HttpClientInMemoryWebApiModule.forRoot(PokemonInMemoryDbService, { delay: 500, dataEncapsulation: false }),
     PokemonModule,
     AppRoutingModule,
     ToastrModule.forRoot()

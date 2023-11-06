@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PokemonSpecialDefense } from '../parameters/pokemon-specialdefense';
+import { PokemonSpecialDefense } from '../model/pokemon-specialdefense';
 
 @Pipe({
   name: 'pokemonSpecialDefenseColor'
