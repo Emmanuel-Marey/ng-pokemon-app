@@ -32,10 +32,10 @@
                 <div style="position: relative; width: 100%; float: left;">
                     <div class="form-group" style="position: relative; width: 50%; float: left; padding-right: 24px">
                         <label for="subType">Sous-type</label>
-                        <input type="text" class="form-control" id="subType" required pattern="^[a-zA-ZÉéèêçô-\s]{1,25}"
+                        <input type="text" class="form-control" id="subType" required pattern="^[a-zA-ZÉéèêçô-\s]{1,30}"
                             [(ngModel)]="pokemon.subType" name="subType" #subType="ngModel" style="height: 32px">
                         <div [hidden]="subType.valid || subType.pristine" class="card-panel red accent-1">
-                            Le sous-type est incorrect. Il est limité à 25 caractères parmi lesquels: a b ... z A B ... Z é è
+                            Le sous-type est incorrect. Il est limité à 30 caractères parmi lesquels: a b ... z A B ... Z é è
                             ê ç -
                         </div>
                     </div>

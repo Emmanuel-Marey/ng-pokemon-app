@@ -21,12 +21,14 @@ import { PokemonAlignmentColorPipe } from './pipes/pokemon-alignment-color.pipe'
 import { authGuard } from '../login/service/auth.guard';
 import { AuthService } from '../login/service/auth.service';
 import { FightPokemonFormComponent } from './components/fight-pokemon-form/fight-pokemon-form.component';
+import { TournamentComponent } from './components/tournament-form/tournament.component';
 
 const pokemonRoutes: Routes = [
   { path: 'edit/pokemon/:id', component: EditPokemonComponent, canActivate: [authGuard] },
   { path: 'pokemons', component: ListPokemonsComponent, canActivate: [authGuard] },
   { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard] },
-  { path: 'fight', component: FightPokemonFormComponent, canActivate: [authGuard] }
+  { path: 'fight', component: FightPokemonFormComponent, canActivate: [authGuard] },
+  { path: 'tournament', component: TournamentComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const pokemonRoutes: Routes = [
     AddPokemonComponent,
     FightPokemonFormComponent,
     LoaderComponent,
-    SearchPokemonComponent
+    SearchPokemonComponent,
+    TournamentComponent
   ],
   imports: [
     CommonModule,

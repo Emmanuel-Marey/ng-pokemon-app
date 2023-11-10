@@ -1,19 +1,329 @@
 <div class="row">
     <div class="col m7 offset-m2 text">
-        <div class="main" *ngIf="article$ | async as article">
-            <div class="main_content" [innerHTML]="article.content"></div>
+        <div class="main_content">
+            <html>
+
+            <head>
+                <style>
+                    h1.inner {
+                        color: blue;
+                        font-size: 40px;
+                    }
+
+                    h2.inner {
+                        color: black;
+                        font-size: 32px;
+                    }
+
+                    h3.inner {
+                        color: black;
+                        font-size: 24px;
+                    }
+
+                    h4.inner {
+                        color: black;
+                        font-size: 20px;
+                    }
+
+                    h5.inner {
+                        color: green;
+                        font-size: 18px;
+                        font-style: italic;
+                    }
+
+                    .column {
+                        float: left;
+                        width: 33.33%;
+                        padding: 8px;
+                    }
+
+                    .small {
+                        font-size: 12px;
+                        font-style: italic;
+                    }
+
+                    .note {
+                        font-size: 13px;
+                        padding: 8px;
+                        margin-bottom: 20px;
+                        background: #e7f2fa
+                    }
+
+                    .note-title {
+                        color: #fff;
+                        font-weight: bold;
+                        display: block;
+                        background: #6ab0de;
+                        margin: -12px;
+                        padding: 6px 12px;
+                        margin-bottom: 6px
+                    }
+
+                    .note-title:before {
+                        content: "! "
+                    }
+
+                    table,
+                    td,
+                    th {
+                        border: 1px solid #3633ee;
+                        font-size: 13px;
+                        padding: 2px 6px 2px 6px;
+                    }
+                </style>
+            </head>
+
+            <body>
+                <div>
+                    <h2 class="inner">Introduction</h2>
+                    <p>Pokemon Fight est un mini-jeu se déroulant dans l'Univers des Pokémons librement inspiré des règles de Donjons & Dragons.</p>
+                    <div class="note">
+                        <p class="note-title">Note</p>
+                        <p>Ce mini-jeu a été programmé en Angular. Il sert de tutoriel pour les développeurs qui
+                            souhaitent apprendre les bases de ce langage. </p>
+                        <p>Angular (communément appelé « Angular v2 et plus ») est un framework pour clients, open
+                            source, basé sur TypeScript et codirigé par l'équipe du projet « Angular » chez Google ainsi
+                            que par une communauté de particuliers et de sociétés.</p>
+                    </div>
+                    <h2 class="inner">Règles du jeu</h2>
+                    <p>Le jeu oppose Ash et Goh, deux entraineurs de Pokémons, au cours d'une série de quatre tournois
+                        (qualification, bronze, argent et or).</p>
+                    <p>Le joueur incarne Ash. Il dirige une équipe de pokémons bons ou neutres. Son adversaire Goh
+                        dirige une équipe de
+                        pokémons neutres ou mauvais (déterminée aléatoirement).</p>
+                    <p>Ash doit passer les qualifications avec des pokémons de niveau 1 pour pouvoir participer au
+                        tournoi de
+                        bronze. Il doit ensuite gagner le tournoi de bronze avec des pokémons de niveau 2 pour accéder
+                        au
+                        tournoi d'argent. Il doit enfin gagner le tournoi d'argent avec des pokémons de niveau 3 pour
+                        participer au dernier
+                        tournoi, le tournoi d'or ou tournoi des champions. Le tournoi des champions oppose des pokémons
+                        de niveau 4.</p>
+                    <h3 class="inner">Les pokémons</h3>
+                    <h4 class="inner">Les caractéristiques</h4>
+                    <p>Les pokémons ont les caractéristiques suivantes :</p>
+                    <table>
+                        <tr>
+                            <th width="200px">Caractéristique</th>
+                            <th>Commentaire</th>
+                        </tr>
+                        <tr>
+                            <td>Identifiant</td>
+                            <td>L'identifiant unique du pokémon (nombre entier supérieur ou égal à 1)</td>
+                        </tr>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Le nom du pokémon </td>
+                        </tr>
+                        <tr>
+                            <td>Niveau</td>
+                            <td>Le niveau du pokémon (compris entre 1 et 4). Les pokémons de niveau 1 participent au
+                                tournoi de qualification. Ceux de niveau 2 participent au tournoi de bronze. Ceux de
+                                niveau 3 participent au tournoi d'argent. Enfin, ceux de niveau 4 participent au tournoi
+                                d'or ou tournoi des champions.</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>La description du pokémon (limitée à 255 caractères). La première phrase correspond à la
+                                description courte.</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Le type du pokémon (valeurs possibles: animal, artificiel, dragon, élémentaire, fée,
+                                plante, préhistorique, mort-vivant et vermine)</td>
+                        </tr>
+                        <tr>
+                            <td>Sous-type</td>
+                            <td>Le sous-type du pokémon (limité à 30 caractères et optionel)</td>
+                        </tr>
+                        <tr>
+                            <td>Alignement</td>
+                            <td>L'alignement du pokémon (valeurs possibles : bon, neutre et mauvais). Ash ne peut
+                                sélectionner que des pokémons bons ou neutres. Les pokémons mauvais sont réservés à Goh.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taille</td>
+                            <td>La taille du pokémon (comprise entre 10 cm et 5 m)</td>
+                        </tr>
+                        <tr>
+                            <td>Poids</td>
+                            <td>Le poids du pokémon (comprise entre 0.5 kg et 500 kg)</td>
+                        </tr>
+                        <tr>
+                            <td>Force</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Dextérité</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Constitution</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Points de vie</td>
+                            <td>Les points de vie du pokémon. Le pokémon perd des points de vie lorsqu'il est blessé. Il
+                                est vaincu lorsque ses points de vie tombent à 0 ou
+                                en-deça.</td>
+                        </tr>
+                        <tr>
+                            <td>Protection</td>
+                            <td>La protection du pokémon (comprise entre 0 et 10). Cette protection réduit la quantité
+                                de dégâts physique subit.
+                                Elle est sans effet face aux attaques magiques.</td>
+                        </tr>
+                        <tr>
+                            <td>Mouvement</td>
+                            <td>Le mode de déplacement du pokémon (valeurs possibles : marche, vol ou nage). Les
+                                créatures volantes bénéficient d'un bonus de +4 au jet d'attaque lorsqu'elles sont
+                                confrontées à des créatures terrestres et à un bonus de +2 face aux créatures marines.
+                                Les créatures marines bénéficient d'un bonus de +2 au jet d'attaque lorsqu'elles sont
+                                confrontées à des créatures terrestres.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attaque</td>
+                            <td>C'est le bonus offensif de base du pokémon (compris entre 1 et 10). Plus il est élevé,
+                                plus le pokémon a de
+                                chance de toucher son adversaire physiquement.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dégâts (nombre de dés | type de dés (D4, D6, D8, D10, D12) | ajustement)</td>
+                            <td>C'est le nombre de points de dégâts que l'attaque physique peut infliger. Par exemple
+                                '1D6 +3' indique que l'attaque peut infliger de 4 à 9 points de dégâts.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Défense</td>
+                            <td>C'est le bonus défensif de base du pokémon (compris entre 1 et 20). Plus il est élevé,
+                                plus le pokémon a de
+                                chance d'esquiver les attaques physiques de son adversaire.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attaques spéciales</td>
+                            <td>Liste les attaques spéciales du pokémons. Les attaques spéciales disponibles sont
+                                décrites ci-après.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Défense spéciale</td>
+                            <td>Indique si le pokémon dispose d'une défense spéciale. Les défenses spéciales disponibles
+                                sont décrites ci-après.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td>L'image du pokémon
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date de création</td>
+                            <td>La date de création du pokémon
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date de modification</td>
+                            <td>La date de dernière modification du pokémon
+                            </td>
+                        </tr>
+                    </table>
+                    <h4 class="inner">Les attaques spéciales</h4>
+                    <table>
+                        <tr>
+                            <th width="130px">Attaque spéciale</th>
+                            <th width="90px">Type</th>
+                            <th>Effet</th>
+                            <th>Niveau minimum</th>
+                        </tr>
+                        <tr>
+                            <td>Froid</td>
+                            <td>Froid</td>
+                            <td>L'attaque physique du pokémon inflige 1D8 points de dégâts supplémentaires dûs au froid</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Froid intense</td>
+                            <td>Froid</td>
+                            <td>L'attaque physique du pokémon inflige 2D8 points de dégâts supplémentaires dûs au froid</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Souffle glacial</td>
+                            <td>Froid</td>
+                            <td>Le pokémon souffle un cône de froid infligeant 8D8 points de dégâts, 1 fois tous les 10 rounds.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Décharge électrique</td>
+                            <td>Electricité</td>
+                            <td>L'attaque physique du pokémon inflige 1D6 points de dégâts supplémentaires dûs à l'électricité</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Éclair de foudre</td>
+                            <td>Electricité</td>
+                            <td>Le pokémon lance un éclair de foudre infligeant 3D6 points de dégâts, 1 fois tous les 4 rounds.</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Arc électrique</td>
+                            <td>Electricité</td>
+                            <td>Le pokémon fait jaillir un arc électrique infligeant 5D6 points de dégâts, 1 fois tous les 8 rounds.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Chaîne d'éclairs</td>
+                            <td>Electricité</td>
+                            <td>Le pokémon lance une chaîne d'éclairs infligeant 7D6 points de dégâts, 1 fois tous les 12 rounds.</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Feu</td>
+                            <td>Feu</td>
+                            <td>L'attaque physique du pokémon inflige 1D12 points de dégâts supplémentaires dûs au feu</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Feu intense</td>
+                            <td>Feu</td>
+                            <td>L'attaque physique du pokémon inflige 2D12 points de dégâts supplémentaires dûs au feu</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Souffle de feu</td>
+                            <td>Feu</td>
+                            <td>Le pokémon souffle un cône de feu infligeant 8D12 points de dégâts, 1 fois tous les 10 rounds.</td>
+                            <td>2</td>
+                        </tr>
+                    </table>
+                    <h4 class="inner">Les défenses spéciales</h4>
+                    <h3 class="inner">Les tournois</h3>
+                    <h4 class="inner">Les équipes</h4>
+                    <h4 class="inner">Les combats</h4>
+                    <h2 class="inner">Comment jouer ?</h2>
+                    <h3 class="inner">Les pokémons disponibles</h3>
+                    <h4 class="inner">Comment en ajouter / supprimer ?</h4>
+                    <h4 class="inner">Comment les modifier ?</h4>
+                    <h3 class="inner">Les tournois</h3>
+                    <h3 class="inner">Le tableau des résultats</h3>
+                    <p>La liste des pokémons disponibles est accessibles via le menu 'Pokémons'.</p>
+                </div>
+            </body>
+
+            </html>
         </div>
     </div>
     <div class="tableofcontents">
-        <div class="tableofcontents_title">Table des matières</div>
+        <div class="tableofcontents_title"><b>Table des matières</b></div>
         <ul class="tableofcontents_list">
             <li class="tableofcontents_item" *ngFor="let headingElement of headingElements; index as i">
-                <a class="tableofcontents_item-link"
-                    [href]="'#' + headingElement.id"
-                    [class.active]="i === activeHeadingIndex"
-                    [class.h3]="headingElement.tagName === 'H3'"
-                    [class.h4]="headingElement.tagName === 'H4'"
-                    (click)="scrollToHeading($event)">
+                <a class="tableofcontents_item-link" [href]="'#' + headingElement.id"
+                    [class.active]="i === activeHeadingIndex" [class.h3]="headingElement.tagName === 'H3'"
+                    [class.h4]="headingElement.tagName === 'H4'" (click)="scrollToHeading($event)">
                     {{ headingElement.textContent }} </a>
             </li>
         </ul>

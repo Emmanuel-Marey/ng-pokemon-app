@@ -1,0 +1,168 @@
+// https://developer.mozilla.org/en-US/docs/Web/CSS/padding
+// https://codepen.io/P233/pen/DQpaag
+// https://sass-lang.com/documentation/style-rules/placeholder-selectors/
+// https://codepen.io/lexxyar/pen/mdbqRrm
+
+// Variables
+$white: #eee9dc;
+$background: #2e6ba7;
+
+$horizontal-gutter: 100px;
+$border-radius: 10px;
+
+$entry-min-height: 60px;
+
+$label-width: 150px;
+$label-height: 30px;
+$label-border-radius: 5px;
+
+// Styles
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 50px;
+    color: $white;
+    font: 13px Verdana, sans-serif;
+    background: $background;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#wrapper {
+    position: relative;
+}
+
+.branch {
+    position: relative;
+    margin-left: $horizontal-gutter + $label-width;
+
+    &:before {
+        content: "";
+        width: $horizontal-gutter / 2;
+        border-top: 2px solid $white;
+        position: absolute;
+        left: -$horizontal-gutter;
+        top: 50%;
+        margin-top: 1px;
+    }
+}
+
+.entry {
+    position: relative;
+    min-height: $entry-min-height;
+
+    &:before {
+        content: "";
+        height: 100%;
+        border-left: 2px solid $white;
+        position: absolute;
+        left: -($horizontal-gutter / 2);
+    }
+
+    &:after {
+        content: "";
+        width: $horizontal-gutter / 2;
+        border-top: 2px solid $white;
+        position: absolute;
+        left: -($horizontal-gutter / 2);
+        top: 50%;
+        margin-top: 1px;
+    }
+
+    &:first-child {
+        &:before {
+            width: $border-radius;
+            height: 50%;
+            top: 50%;
+            margin-top: 2px;
+            border-radius: $border-radius 0 0 0;
+        }
+
+        &:after {
+            height: $border-radius;
+            border-radius: $border-radius 0 0 0;
+        }
+    }
+
+    &:last-child {
+        &:before {
+            width: $border-radius;
+            height: 50%;
+            border-radius: 0 0 0 $border-radius;
+        }
+
+        &:after {
+            height: $border-radius;
+            border-top: none;
+            border-bottom: 2px solid $white;
+            border-radius: 0 0 0 $border-radius;
+            margin-top: -$border-radius + 1px;
+        }
+    }
+
+    &.sole {
+        &:before {
+            display: none;
+        }
+
+        &:after {
+            width: $horizontal-gutter / 2;
+            height: 0;
+            margin-top: 1px;
+            border-radius: 0;
+        }
+    }
+}
+
+.label {
+    display: block;
+    min-width: $label-width;
+    padding: 5px 10px;
+    line-height: $label-height - 5px * 2;
+    text-align: center;
+    border: 2px solid $white;
+    border-radius: $label-border-radius;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -($label-height / 2);
+}
+
+.tournament-title {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    background: #6ab0de;
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 6px
+}
+
+.gold {
+    background: gold;
+    color: black;
+}
+
+.silver {
+    background: silver;
+    color: black;
+}
+
+.bronze {
+    background: #85691c;
+    color: white
+}
+
+.qualification {
+    background: green;
+    color: white
+}
