@@ -9,6 +9,6 @@ export class TournamentComponent implements OnInit {
   winner: string;
   
   ngOnInit(): void {
-    this.winner = 'Pikachu';
+    this.winner = 'Pichu';
   }
 }

@@ -76,14 +76,16 @@
             <body>
                 <div>
                     <h2 class="inner">Introduction</h2>
-                    <p>Pokemon Fight est un mini-jeu se déroulant dans l'Univers des Pokémons librement inspiré des règles de Donjons & Dragons.</p>
+                    <p>Pokemon Fight est un mini-jeu se déroulant dans l'Univers des Pokémons librement inspiré des
+                        règles de Donjons & Dragons.</p>
                     <div class="note">
                         <p class="note-title">Note</p>
                         <p>Ce mini-jeu a été programmé en Angular. Il sert de tutoriel pour les développeurs qui
                             souhaitent apprendre les bases de ce langage. </p>
-                        <p>Angular (communément appelé « Angular v2 et plus ») est un framework pour clients, open
+                        <p>Angular (communément appelé « Angular v2 et plus ») est un framework open
                             source, basé sur TypeScript et codirigé par l'équipe du projet « Angular » chez Google ainsi
-                            que par une communauté de particuliers et de sociétés.</p>
+                            que par une communauté de particuliers et de sociétés. Angular permet de développer des
+                            applications clientes Web.</p>
                     </div>
                     <h2 class="inner">Règles du jeu</h2>
                     <p>Le jeu oppose Ash et Goh, deux entraineurs de Pokémons, au cours d'une série de quatre tournois
@@ -95,16 +97,16 @@
                         tournoi de
                         bronze. Il doit ensuite gagner le tournoi de bronze avec des pokémons de niveau 2 pour accéder
                         au
-                        tournoi d'argent. Il doit enfin gagner le tournoi d'argent avec des pokémons de niveau 3 pour
+                        tournoi d'argent. Il doit ensuite gagner le tournoi d'argent avec des pokémons de niveau 3 pour
                         participer au dernier
                         tournoi, le tournoi d'or ou tournoi des champions. Le tournoi des champions oppose des pokémons
                         de niveau 4.</p>
                     <h3 class="inner">Les pokémons</h3>
-                    <h4 class="inner">Les caractéristiques</h4>
-                    <p>Les pokémons ont les caractéristiques suivantes :</p>
+                    <h4 class="inner">Les traits</h4>
+                    <p>Les pokémons ont les traits suivants :</p>
                     <table>
                         <tr>
-                            <th width="200px">Caractéristique</th>
+                            <th width="200px">Traits</th>
                             <th>Commentaire</th>
                         </tr>
                         <tr>
@@ -117,15 +119,20 @@
                         </tr>
                         <tr>
                             <td>Niveau</td>
-                            <td>Le niveau du pokémon (compris entre 1 et 4). Les pokémons de niveau 1 participent au
+                            <td>Le niveau du pokémon (compris entre 1 et 4).<br>
+                                Les pokémons de niveau 1 participent au
                                 tournoi de qualification. Ceux de niveau 2 participent au tournoi de bronze. Ceux de
                                 niveau 3 participent au tournoi d'argent. Enfin, ceux de niveau 4 participent au tournoi
                                 d'or ou tournoi des champions.</td>
                         </tr>
                         <tr>
+                            <td>Classe</td>
+                            <td>La classe du pokémon (valeurs possibles : guerrier, magicien, guérisseur, psionique)</td>
+                        </tr>
+                        <tr>
                             <td>Description</td>
-                            <td>La description du pokémon (limitée à 255 caractères). La première phrase correspond à la
-                                description courte.</td>
+                            <td>La description du pokémon (limitée à 255 caractères).<br>
+                                La première phrase de la description correspond à la description courte.</td>
                         </tr>
                         <tr>
                             <td>Type</td>
@@ -134,50 +141,59 @@
                         </tr>
                         <tr>
                             <td>Sous-type</td>
-                            <td>Le sous-type du pokémon (limité à 30 caractères et optionel)</td>
+                            <td>Le sous-type du pokémon (limité à 30 caractères et optionel).<br>
+                            Exemple: Animal (souris)</td>
                         </tr>
                         <tr>
                             <td>Alignement</td>
-                            <td>L'alignement du pokémon (valeurs possibles : bon, neutre et mauvais). Ash ne peut
-                                sélectionner que des pokémons bons ou neutres. Les pokémons mauvais sont réservés à Goh.
+                            <td>L'alignement du pokémon (valeurs possibles : bon, neutre et mauvais).<br>
+                                Ash ne peut sélectionner que des pokémons bons ou neutres. Les pokémons mauvais sont réservés à Goh.
                             </td>
                         </tr>
                         <tr>
                             <td>Taille</td>
-                            <td>La taille du pokémon (comprise entre 10 cm et 5 m)</td>
+                            <td>La taille du pokémon (comprise entre 10 cm et 5 m).<br>
+                                Plus un pokémon est grand, plus il dispose de points de vie mais plus il est facile à toucher physiquement.</td>
                         </tr>
                         <tr>
                             <td>Poids</td>
-                            <td>Le poids du pokémon (comprise entre 0.5 kg et 500 kg)</td>
+                            <td>Le poids du pokémon (compris entre 0.5 kg et 500 kg)</td>
                         </tr>
                         <tr>
                             <td>Force</td>
-                            <td></td>
+                            <td>La force mesure la puissance physique du pokémon. Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Dextérité</td>
-                            <td></td>
+                            <td>La dextérité mesure l'agilité du pokémon et sa capacité à esquiver les attaques
+                                physiques. Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Constitution</td>
-                            <td></td>
+                            <td>La constitution mesure la vigueur du pokémon. Plus elle est importante, plus le pokémon
+                                dispose de points de vie. Elle est comprise entre 1 et 20.</td>
+                        </tr>
+                        <tr>
+                            <td>Intelligence</td>
+                            <td>L'intelligence est la caractéristique principale des magiciens et des créatures
+                                utilisant leur esprit pour attaquer les autres. Elle augmente les dégâts magiques qu'ils
+                                infligent. Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Points de vie</td>
-                            <td>Les points de vie du pokémon. Le pokémon perd des points de vie lorsqu'il est blessé. Il
-                                est vaincu lorsque ses points de vie tombent à 0 ou
-                                en-deça.</td>
+                            <td>Les points de vie du pokémon.<br>
+                                Le pokémon perd des points de vie lorsqu'il est blessé. Il est vaincu lorsque ses points de vie tombent à 0 ou
+                                en-deça. Les sorts de guérison lui rendent des points de vie dans la limite de ses points de vie.</td>
                         </tr>
                         <tr>
                             <td>Protection</td>
-                            <td>La protection du pokémon (comprise entre 0 et 10). Cette protection réduit la quantité
-                                de dégâts physique subit.
-                                Elle est sans effet face aux attaques magiques.</td>
+                            <td>La protection du pokémon (comprise entre 0 et 10).<br>
+                                Cette protection réduit la quantité de dégâts physique subit. Elle est sans effet face aux attaques magiques.</td>
                         </tr>
                         <tr>
                             <td>Mouvement</td>
-                            <td>Le mode de déplacement du pokémon (valeurs possibles : marche, vol ou nage). Les
-                                créatures volantes bénéficient d'un bonus de +4 au jet d'attaque lorsqu'elles sont
+                            <td>Le mode de déplacement du pokémon (valeurs possibles : marche, vol ou nage).<br>
+                                Les créatures volantes bénéficient d'un bonus de +4 au jet d'attaque lorsqu'elles sont
                                 confrontées à des créatures terrestres et à un bonus de +2 face aux créatures marines.
                                 Les créatures marines bénéficient d'un bonus de +2 au jet d'attaque lorsqu'elles sont
                                 confrontées à des créatures terrestres.
@@ -185,9 +201,8 @@
                         </tr>
                         <tr>
                             <td>Attaque</td>
-                            <td>C'est le bonus offensif de base du pokémon (compris entre 1 et 10). Plus il est élevé,
-                                plus le pokémon a de
-                                chance de toucher son adversaire physiquement.
+                            <td>C'est le bonus offensif de base du pokémon (compris entre 1 et 10).<br>
+                                Plus il est élevé, plus le pokémon a de chance de toucher son adversaire physiquement.
                             </td>
                         </tr>
                         <tr>
@@ -198,21 +213,18 @@
                         </tr>
                         <tr>
                             <td>Défense</td>
-                            <td>C'est le bonus défensif de base du pokémon (compris entre 1 et 20). Plus il est élevé,
-                                plus le pokémon a de
-                                chance d'esquiver les attaques physiques de son adversaire.
+                            <td>C'est le bonus défensif de base du pokémon (compris entre 1 et 20).<br>
+                                Plus il est élevé, plus le pokémon a de chance d'esquiver les attaques physiques de son adversaire.
                             </td>
                         </tr>
                         <tr>
                             <td>Attaques spéciales</td>
-                            <td>Liste les attaques spéciales du pokémons. Les attaques spéciales disponibles sont
-                                décrites ci-après.
+                            <td>Liste les attaques spéciales du pokémons.
                             </td>
                         </tr>
                         <tr>
                             <td>Défense spéciale</td>
-                            <td>Indique si le pokémon dispose d'une défense spéciale. Les défenses spéciales disponibles
-                                sont décrites ci-après.
+                            <td>Indique si le pokémon dispose d'une défense spéciale.
                             </td>
                         </tr>
                         <tr>
@@ -231,6 +243,31 @@
                             </td>
                         </tr>
                     </table>
+                    <h4 class="inner">Les caractéristiques</h4>
+                    <h5 class="inner">La force</h5>
+                    <p>La force mesure la puissance physique du pokémon.</p>
+                    <table width="300px">
+                        <tr>
+                            <th width="100px">Force</th>
+                            <th width="100px">Ajustement au jet d'attaque</th>
+                            <th width="100px">Ajustement aux dégâts</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>-5</td>
+                            <td>-5</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>-4</td>
+                            <td>-4</td>
+                        </tr>
+                    </table>
+                    <p>La dextérité :</p>
+                    <p>La constitution :</p>
+                    <p>L'intelligence :</p>
+                    <h4 class="inner">Le bonus offensif</h4>
+                    <h4 class="inner">Le bonus défensif</h4>
                     <h4 class="inner">Les attaques spéciales</h4>
                     <table>
                         <tr>
@@ -242,65 +279,157 @@
                         <tr>
                             <td>Froid</td>
                             <td>Froid</td>
-                            <td>L'attaque physique du pokémon inflige 1D8 points de dégâts supplémentaires dûs au froid</td>
+                            <td>L'attaque physique du pokémon inflige 1D8 points de dégâts supplémentaires dûs au froid.
+                            </td>
                             <td>1</td>
                         </tr>
                         <tr>
                             <td>Froid intense</td>
                             <td>Froid</td>
-                            <td>L'attaque physique du pokémon inflige 2D8 points de dégâts supplémentaires dûs au froid</td>
+                            <td>L'attaque physique du pokémon inflige 2D8 points de dégâts supplémentaires dûs au froid.
+                            </td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Souffle glacial</td>
                             <td>Froid</td>
-                            <td>Le pokémon souffle un cône de froid infligeant 8D8 points de dégâts, 1 fois tous les 10 rounds.</td>
+                            <td>Le pokémon souffle un cône de froid infligeant 10D8 points de dégâts au lieu d'attaquer.
+                                Le temps de chargement est de 10 rounds. Le souffle touche automatiquement. Un jet de
+                                vigueur réussi permet de réduire les dégâts de moitié.</td>
                             <td>3</td>
                         </tr>
                         <tr>
                             <td>Décharge électrique</td>
                             <td>Electricité</td>
-                            <td>L'attaque physique du pokémon inflige 1D6 points de dégâts supplémentaires dûs à l'électricité</td>
+                            <td>L'attaque physique du pokémon inflige 1D6 points de dégâts supplémentaires dûs à
+                                l'électricité</td>
                             <td>1</td>
                         </tr>
                         <tr>
                             <td>Éclair de foudre</td>
                             <td>Electricité</td>
-                            <td>Le pokémon lance un éclair de foudre infligeant 3D6 points de dégâts, 1 fois tous les 4 rounds.</td>
+                            <td>Le pokémon lance un éclair de foudre infligeant 3D6 points de dégâts, 1 fois tous les 4
+                                rounds au lieu d'attaquer. L'éclair touche automatiquement. Un jet de r&flexe réussi
+                                permet de réduire les dégâts de moitié.</td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Arc électrique</td>
                             <td>Electricité</td>
-                            <td>Le pokémon fait jaillir un arc électrique infligeant 5D6 points de dégâts, 1 fois tous les 8 rounds.</td>
+                            <td>Le pokémon fait jaillir un arc électrique infligeant 5D6 points de dégâts, 1 fois tous
+                                les 8 rounds. L'arc électrique touche automatiquement.</td>
                             <td>3</td>
                         </tr>
                         <tr>
                             <td>Chaîne d'éclairs</td>
                             <td>Electricité</td>
-                            <td>Le pokémon lance une chaîne d'éclairs infligeant 7D6 points de dégâts, 1 fois tous les 12 rounds.</td>
+                            <td>Le pokémon lance une chaîne d'éclairs infligeant 7D6 points de dégâts, 1 fois tous les
+                                12 rounds. La chaîne d'éclairs touche automatiquement.</td>
                             <td>4</td>
                         </tr>
                         <tr>
                             <td>Feu</td>
                             <td>Feu</td>
-                            <td>L'attaque physique du pokémon inflige 1D12 points de dégâts supplémentaires dûs au feu</td>
+                            <td>L'attaque physique du pokémon inflige 1D12 points de dégâts supplémentaires dûs au feu
+                            </td>
                             <td>1</td>
                         </tr>
                         <tr>
                             <td>Feu intense</td>
                             <td>Feu</td>
-                            <td>L'attaque physique du pokémon inflige 2D12 points de dégâts supplémentaires dûs au feu</td>
+                            <td>L'attaque physique du pokémon inflige 2D12 points de dégâts supplémentaires dûs au feu
+                            </td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Souffle de feu</td>
                             <td>Feu</td>
-                            <td>Le pokémon souffle un cône de feu infligeant 8D12 points de dégâts, 1 fois tous les 10 rounds.</td>
+                            <td>Le pokémon souffle un cône de feu infligeant 8D12 points de dégâts, 1 fois tous les 10
+                                rounds. Le souffle touche automatiquement.</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Jet d'eau chaude</td>
+                            <td>Eau</td>
+                            <td>Le pokémon projette un jet d'eau chaude infligeant 3D8 points de dégâts, 1 fois
+                                tous les 4
+                                rounds. Le jet d'eau touche automatiquement.</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Jet d'eau brûlante</td>
+                            <td>Eau</td>
+                            <td>Le pokémon projette un puissant jet d'eau brûlante infligeant 5D8 points de dégâts, 1
+                                fois tous les 7
+                                rounds. Le jet d'eau touche automatiquement.</td>
                             <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Vapeurs brûlantes</td>
+                            <td>Eau</td>
+                            <td>Le pokémon souffle un nuage de vapeurs brûlante infligeant 8D8 points de dégâts, 1
+                                fois tous les 10
+                                rounds. Le souffle touche automatiquement.</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Poison bénin</td>
+                            <td>Poison</td>
+                            <td>L'attaque physique du pokémon inflige des blessures empoisonnées causant 1D6 points de
+                                dégâts supplémentaires</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Poison</td>
+                            <td>Poison</td>
+                            <td>L'attaque physique du pokémon inflige des blessures empoisonnées causant 2D6 points de
+                                dégâts supplémentaires</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Poison virulent</td>
+                            <td>Poison</td>
+                            <td>L'attaque physique du pokémon inflige des blessures empoisonnées causant 3D6 points de
+                                dégâts supplémentaires</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Poison mortel</td>
+                            <td>Poison</td>
+                            <td>L'attaque physique du pokémon injecte un poison mortel dans le corps de la victime qui
+                                tue dans 20% des cas. Il inflige au minimum 4D6 points de dégâts supplémentaires</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Ténèbres</td>
+                            <td>Ténèbres</td>
+                            <td>Le pokémon est entouré d'un voile de ténèbres. Il bénéficie d'un bonus de +2 au jets de
+                                défense.</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Ténèbres profondes</td>
+                            <td>Ténèbres</td>
+                            <td>Le pokémon est entouré d'un voile de profondes ténèbres. Il bénéficie d'un bonus de +4
+                                au jets de défense.</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Absorption d'énergie</td>
+                            <td>Ténèbres</td>
+                            <td>L'attaque physique du pokémon absorbe l'énergie vitale des victimes et cause 2D6 points
+                                de dégâts supplémentaires</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Mort</td>
+                            <td>Ténèbres</td>
+                            <td>L'attaque physique du pokémon est mortel dans 20% des cas.</td>
+                            <td>1</td>
                         </tr>
                     </table>
                     <h4 class="inner">Les défenses spéciales</h4>
+                    <h4 class="inner">Les jets de sauvegarde</h4>
                     <h3 class="inner">Les tournois</h3>
                     <h4 class="inner">Les équipes</h4>
                     <h4 class="inner">Les combats</h4>
@@ -309,7 +438,9 @@
                     <h4 class="inner">Comment en ajouter / supprimer ?</h4>
                     <h4 class="inner">Comment les modifier ?</h4>
                     <h3 class="inner">Les tournois</h3>
-                    <h3 class="inner">Le tableau des résultats</h3>
+                    <h4 class="inner">La constitution des équipes</h4>
+                    <h4 class="inner">Les combats</h4>
+                    <h4 class="inner">Le résultat des tournois</h4>
                     <p>La liste des pokémons disponibles est accessibles via le menu 'Pokémons'.</p>
                 </div>
             </body>
