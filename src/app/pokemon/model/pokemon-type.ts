@@ -11,9 +11,9 @@ export enum PokemonType {
 }
 
 export namespace PokemonType {
-    export function getPokemonType(type: PokemonType): string {
+    export function getPokemonType(pokemonType: PokemonType): string {
         let text = '';
-        switch (type) {
+        switch (pokemonType) {
             case PokemonType.animal:
                 text = "Animal";
                 break;
@@ -49,8 +49,8 @@ export namespace PokemonType {
     }
 
     export function getPokemonTypes(): number[] {
-        const values = Object.keys(PokemonType).filter((type) => !isNaN(Number(type)));
-        let types = values.map(Number);
-        return types;
+        const values = Object.keys(PokemonType).filter((pokemonType) => !isNaN(Number(pokemonType)));
+        let pokemonTypes = values.map(Number);
+        return pokemonTypes;
     }
 }

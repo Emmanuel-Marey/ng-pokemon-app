@@ -79,9 +79,9 @@ export const SPECIAL_ABILITIES: SpecialAbility[] = [
 ]
 
 export namespace PokemonSpecialAbility {
-    export function getSpecialAbility(specialAbility: PokemonSpecialAbility): string {
+    export function getSpecialAbility(pokemonSpecialAbility: PokemonSpecialAbility): string {
         let text = '';
-        switch (specialAbility) {
+        switch (pokemonSpecialAbility) {
             case PokemonSpecialAbility.cold:
                 text = "Froid";
                 break;
@@ -186,13 +186,8 @@ export namespace PokemonSpecialAbility {
     }
 
     export function getSpecialAbilities(): number[] {
-        const values = Object.keys(PokemonSpecialAbility).filter((type) => !isNaN(Number(type)));
-        let types = values.map(Number);
-        return types;
-    }
-
-    export function toString(specialAbility: SpecialAbility): string {
-        let s: string = getSpecialAbility(specialAbility.specialAbility);
-        return s;
+        const values = Object.keys(PokemonSpecialAbility).filter((pokemonSpecialAbility) => !isNaN(Number(pokemonSpecialAbility)));
+        let specialAbilities = values.map(Number);
+        return specialAbilities;
     }
 }   

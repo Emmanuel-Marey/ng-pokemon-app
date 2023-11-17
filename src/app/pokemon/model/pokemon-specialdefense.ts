@@ -9,9 +9,9 @@ export enum PokemonSpecialDefense {
 }
 
 export namespace PokemonSpecialDefense {
-    export function getSpecialDefense(specialDefense: PokemonSpecialDefense): string {
+    export function getSpecialDefense(pokemonSpecialDefense: PokemonSpecialDefense): string {
         let text = '';
-        switch (specialDefense) {
+        switch (pokemonSpecialDefense) {
             case PokemonSpecialDefense.none:
                 text = "Aucune";
                 break;
@@ -41,8 +41,8 @@ export namespace PokemonSpecialDefense {
     }
 
     export function getSpecialDefenses(): number[] {
-        const values = Object.keys(PokemonSpecialDefense).filter((type) => !isNaN(Number(type)));
-        let types = values.map(Number);
-        return types;
+        const values = Object.keys(PokemonSpecialDefense).filter((pokemonSpecialDefense) => !isNaN(Number(pokemonSpecialDefense)));
+        let specialDefenses = values.map(Number);
+        return specialDefenses;
     }
 }   

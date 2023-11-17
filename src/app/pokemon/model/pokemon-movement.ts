@@ -5,9 +5,9 @@ export enum PokemonMovement {
 }
 
 export namespace PokemonMovement {
-    export function getMovement(movement: PokemonMovement): string {
+    export function getMovement(pokemonMovement: PokemonMovement): string {
         let text = '';
-        switch (movement) {
+        switch (pokemonMovement) {
             case PokemonMovement.normal:
                 text = "Marche";
                 break;
@@ -25,7 +25,7 @@ export namespace PokemonMovement {
     }
 
     export function getMovements(): number[] {
-        const values = Object.keys(PokemonMovement).filter((type) => !isNaN(Number(type)));
+        const values = Object.keys(PokemonMovement).filter((pokemonMovement) => !isNaN(Number(pokemonMovement)));
         let types = values.map(Number);
         return types;
     }

@@ -126,10 +126,6 @@
                                 d'or ou tournoi des champions.</td>
                         </tr>
                         <tr>
-                            <td>Classe</td>
-                            <td>La classe du pokémon (valeurs possibles : guerrier, magicien, guérisseur, psionique)</td>
-                        </tr>
-                        <tr>
                             <td>Description</td>
                             <td>La description du pokémon (limitée à 255 caractères).<br>
                                 La première phrase de la description correspond à la description courte.</td>
@@ -137,23 +133,31 @@
                         <tr>
                             <td>Type</td>
                             <td>Le type du pokémon (valeurs possibles: animal, artificiel, dragon, élémentaire, fée,
-                                plante, préhistorique, mort-vivant et vermine)</td>
+                                plante, préhistorique, mort-vivant et vermine). Le type limite les classes disponibles.
+                            </td>
                         </tr>
                         <tr>
                             <td>Sous-type</td>
                             <td>Le sous-type du pokémon (limité à 30 caractères et optionel).<br>
-                            Exemple: Animal (souris)</td>
+                                Exemple: Animal (souris)</td>
+                        </tr>
+                        <tr>
+                            <td>Classe</td>
+                            <td>La classe du pokémon (valeurs possibles : guerrier, magicien, roublard, psioniste)
+                            </td>
                         </tr>
                         <tr>
                             <td>Alignement</td>
                             <td>L'alignement du pokémon (valeurs possibles : bon, neutre et mauvais).<br>
-                                Ash ne peut sélectionner que des pokémons bons ou neutres. Les pokémons mauvais sont réservés à Goh.
+                                Ash ne peut sélectionner que des pokémons bons ou neutres. Les pokémons mauvais sont
+                                réservés à Goh.
                             </td>
                         </tr>
                         <tr>
                             <td>Taille</td>
                             <td>La taille du pokémon (comprise entre 10 cm et 5 m).<br>
-                                Plus un pokémon est grand, plus il dispose de points de vie mais plus il est facile à toucher physiquement.</td>
+                                Plus un pokémon est grand, plus il dispose de points de vie de base mais plus il est
+                                facile à toucher physiquement.</td>
                         </tr>
                         <tr>
                             <td>Poids</td>
@@ -161,34 +165,42 @@
                         </tr>
                         <tr>
                             <td>Force</td>
-                            <td>La force mesure la puissance physique du pokémon. Elle est comprise entre 1 et 20.</td>
+                            <td>La force est la caractéristique principale des guerriers. Elle mesure la puissance
+                                physique du pokémon. Elle améliore son bonus offensif et augmente ses dégâts physiques.
+                                Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Dextérité</td>
-                            <td>La dextérité mesure l'agilité du pokémon et sa capacité à esquiver les attaques
-                                physiques. Elle est comprise entre 1 et 20.</td>
+                            <td>La dextérité est la caractéristique principale des voleurs. Elle mesure l'agilité du
+                                pokémon. Elle améliore son bonus défensif et permet de réduire la quantité de dégâts
+                                causés par certaines attaques à distance (éclair, jet, etc.) . Elle est comprise entre 1
+                                et 20.</td>
                         </tr>
                         <tr>
                             <td>Constitution</td>
                             <td>La constitution mesure la vigueur du pokémon. Plus elle est importante, plus le pokémon
-                                dispose de points de vie. Elle est comprise entre 1 et 20.</td>
+                                dispose de points de vie. Elle améliore sa capacité à endurer les attaques de zone
+                                (souffle et nuage) et aux poisons. Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Intelligence</td>
-                            <td>L'intelligence est la caractéristique principale des magiciens et des créatures
-                                utilisant leur esprit pour attaquer les autres. Elle augmente les dégâts magiques qu'ils
-                                infligent. Elle est comprise entre 1 et 20.</td>
+                            <td>L'intelligence est la caractéristique principale des magiciens et des psionistes. Elle
+                                augmente les dégâts magiques qu'ils infligent. Elle améliore sa capacité à endurer les
+                                attaques magiques ou annule leur effet. Elle est comprise entre 1 et 20.</td>
                         </tr>
                         <tr>
                             <td>Points de vie</td>
                             <td>Les points de vie du pokémon.<br>
-                                Le pokémon perd des points de vie lorsqu'il est blessé. Il est vaincu lorsque ses points de vie tombent à 0 ou
-                                en-deça. Les sorts de guérison lui rendent des points de vie dans la limite de ses points de vie.</td>
+                                Le pokémon perd des points de vie lorsqu'il est blessé. Il est vaincu lorsque ses points
+                                de vie tombent à 0 ou
+                                en-deça. Les sorts de guérison lui rendent des points de vie dans la limite de ses
+                                points de vie.</td>
                         </tr>
                         <tr>
                             <td>Protection</td>
                             <td>La protection du pokémon (comprise entre 0 et 10).<br>
-                                Cette protection réduit la quantité de dégâts physique subit. Elle est sans effet face aux attaques magiques.</td>
+                                Cette protection réduit la quantité de dégâts physique subit. Elle est sans effet face
+                                aux attaques magiques.</td>
                         </tr>
                         <tr>
                             <td>Mouvement</td>
@@ -201,7 +213,7 @@
                         </tr>
                         <tr>
                             <td>Attaque</td>
-                            <td>C'est le bonus offensif de base du pokémon (compris entre 1 et 10).<br>
+                            <td>C'est le bonus d'attaque du pokémon. Il varie en fonction de la taille, de la classe, du niveau et de la force du pokémon.<br>
                                 Plus il est élevé, plus le pokémon a de chance de toucher son adversaire physiquement.
                             </td>
                         </tr>
@@ -214,7 +226,8 @@
                         <tr>
                             <td>Défense</td>
                             <td>C'est le bonus défensif de base du pokémon (compris entre 1 et 20).<br>
-                                Plus il est élevé, plus le pokémon a de chance d'esquiver les attaques physiques de son adversaire.
+                                Plus il est élevé, plus le pokémon a de chance d'esquiver les attaques physiques de son
+                                adversaire.
                             </td>
                         </tr>
                         <tr>
@@ -248,24 +261,112 @@
                     <p>La force mesure la puissance physique du pokémon.</p>
                     <table width="300px">
                         <tr>
-                            <th width="100px">Force</th>
-                            <th width="100px">Ajustement au jet d'attaque</th>
-                            <th width="100px">Ajustement aux dégâts</th>
+                            <th width="100px">Score</th>
+                            <th width="100px">Ajustement aux jets d'attaque</th>
+                            <th width="100px">Ajustement aux dégâts des attaques physiques</th>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>-5</td>
-                            <td>-5</td>
+                            <td>1 - 2</td>
+                            <td>-3</td>
+                            <td>-4</td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td>-4</td>
-                            <td>-4</td>
+                            <td>3 - 4</td>
+                            <td>-2</td>
+                            <td>-3</td>
+                        </tr>
+                        <tr>
+                            <td>5 - 6</td>
+                            <td>-1</td>
+                            <td>-2</td>
+                        </tr>
+                        <tr>
+                            <td>7 - 8</td>
+                            <td>+0</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>9 - 10</td>
+                            <td>+0</td>
+                            <td>+0</td>
+                        </tr>
+                        <tr>
+                            <td>11 - 12</td>
+                            <td>+0</td>
+                            <td>+1</td>
+                        </tr>
+                        <tr>
+                            <td>13 - 14</td>
+                            <td>+1</td>
+                            <td>+2</td>
+                        </tr>
+                        <tr>
+                            <td>15 - 16</td>
+                            <td>+2</td>
+                            <td>+3</td>
+                        </tr>
+                        <tr>
+                            <td>17 - 18</td>
+                            <td>+3</td>
+                            <td>+4</td>
+                        </tr>
+                        <tr>
+                            <td>19 - 20</td>
+                            <td>+4</td>
+                            <td>+6</td>
                         </tr>
                     </table>
-                    <p>La dextérité :</p>
-                    <p>La constitution :</p>
-                    <p>L'intelligence :</p>
+                    <h5 class="inner">La dextérité</h5>
+                    <p>La dextérité mesure l'agilité du pokémon et sa capacité à esquiver les attaques physiques.</p>
+                    <table width="300px">
+                        <tr>
+                            <th width="100px">Score</th>
+                            <th width="100px">Ajustement aux jets de défense</th>
+                            <th width="100px">Ajustement aux jets de réflexe</th>
+                        </tr>
+                        <tr>
+                            <td>1 - 3</td>
+                            <td>-3</td>
+                            <td>-3</td>
+                        </tr>
+                        <tr>
+                            <td>4 - 6</td>
+                            <td>-2</td>
+                            <td>-2</td>
+                        </tr>
+                        <tr>
+                            <td>7 - 8</td>
+                            <td>-1</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>9 - 12</td>
+                            <td>+0</td>
+                            <td>+0</td>
+                        </tr>
+                        <tr>
+                            <td>13 - 14</td>
+                            <td>+1</td>
+                            <td>+1</td>
+                        </tr>
+                        <tr>
+                            <td>15 - 16</td>
+                            <td>+2</td>
+                            <td>+2</td>
+                        </tr>
+                        <tr>
+                            <td>17 - 18</td>
+                            <td>+3</td>
+                            <td>+3</td>
+                        </tr>
+                        <tr>
+                            <td>19 - 20</td>
+                            <td>+4</td>
+                            <td>+4</td>
+                        </tr>
+                    </table>
+                    <h5 class="inner">La constitution</h5>
+                    <h5 class="inner">L'intelligence</h5>
                     <h4 class="inner">Le bonus offensif</h4>
                     <h4 class="inner">Le bonus défensif</h4>
                     <h4 class="inner">Les attaques spéciales</h4>
@@ -403,7 +504,7 @@
                         <tr>
                             <td>Ténèbres</td>
                             <td>Ténèbres</td>
-                            <td>Le pokémon est entouré d'un voile de ténèbres. Il bénéficie d'un bonus de +2 au jets de
+                            <td>Le pokémon est entouré d'un voile de ténèbres. Il bénéficie d'un bonus de +2 aux jets de
                                 défense.</td>
                             <td>1</td>
                         </tr>
@@ -411,7 +512,7 @@
                             <td>Ténèbres profondes</td>
                             <td>Ténèbres</td>
                             <td>Le pokémon est entouré d'un voile de profondes ténèbres. Il bénéficie d'un bonus de +4
-                                au jets de défense.</td>
+                                aux jets de défense.</td>
                             <td>2</td>
                         </tr>
                         <tr>
